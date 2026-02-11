@@ -1,0 +1,756 @@
+/* style.css - Professional Upgrade */
+:root {
+    --primary-blue: #003366;
+    --primary-red: #e60000;
+    --light-bg: #f4f7f6;
+    --white: #ffffff;
+    --text-dark: #333333;
+    --text-light: #666666;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- PREMIUM HEADER & NAV --- */
+
+/* 1. The Dark Top Bar */
+.top-bar {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 8px 20px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.top-bar-contact {
+    display: flex;
+    gap: 20px;
+}
+
+.top-bar-contact span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 2. Main Header Adjustments */
+header {
+    background-color: var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px 20px; /* Keeps it tight for the large logo */
+}
+
+.logo-img { height: 100px; width: 250px; }
+
+/* 3. Navigation Links & Sliding Underline */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a.nav-link {
+    text-decoration: none;
+    color: var(--text-dark); /* Sleek dark grey */
+    font-weight: 600;
+    font-size: 16px;
+    position: relative; 
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+/* The Magic Sliding Underline */
+nav ul li a.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: var(--primary-red);
+    transition: width 0.3s ease, right 0.3s ease;
+}
+
+nav ul li a.nav-link:hover::after,
+nav ul li a.nav-link.active::after {
+    width: 100%;
+    left: 0;
+}
+
+nav ul li a.nav-link:hover, 
+nav ul li a.nav-link.active {
+    color: var(--primary-blue);
+}
+
+/* 4. Premium CTA Button in Header */
+.nav-cta {
+    background-color: var(--primary-blue);
+    color: var(--white) !important;
+    padding: 10px 24px;
+    border-radius: 30px; /* Premium Pill Shape */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 51, 102, 0.2);
+}
+
+.nav-cta:hover {
+    background-color: var(--primary-red);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(230, 0, 0, 0.3);
+}
+/* --- 5. Premium Dropdown Menu (Desktop) --- */
+.dropdown {
+    position: relative; /* Acts as an anchor for the dropdown box */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Positions it right below the header */
+    left: 0;
+    background-color: var(--white);
+    min-width: 260px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 10px 0;
+    
+    /* Magic Smooth Reveal */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+    
+    /* Overrides the horizontal layout of the main nav */
+    display: flex; 
+    flex-direction: column;
+    gap: 0;
+    z-index: 1001;
+}
+
+/* Show the menu when hovering over the "Services" word OR the menu itself */
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Stop the red sliding line from appearing inside the dropdown */
+.dropdown-menu li a::after {
+    display: none !important;
+}
+
+/* Hover effect for the specific dropdown items */
+.dropdown-menu li a:hover {
+    background-color: var(--light-bg);
+    color: var(--primary-red);
+    padding-left: 25px; /* Slight right-shift on hover for a premium feel */
+}
+
+/* --- Parallax Hero Section (Moving with Scroll) --- */
+.hero-parallax {
+    /* Replace 'hero-bg.jpg' with your actual background image name */
+    background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(12, 67, 122, 0.7)), url('assets/images/hero-bg.jpg');
+    height: 60vh;
+    background-attachment: fixed; /* THIS creates the scroll effect */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* --- Main Content Containers --- */
+.container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 30px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+h1, h2, h3 { color: var(--primary-blue); }
+
+.motto {
+    text-align: center;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--primary-red);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* --- Clickable Service Cards --- */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* For links */
+    color: inherit;
+    display: block;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.service-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.service-content {
+    padding: 20px;
+    border-top: 4px solid var(--primary-blue);
+}
+
+.service-content h3 { margin-top: 0; }
+
+/* --- Forms & Buttons --- */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.submit-btn {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.submit-btn:hover { background-color: var(--primary-red); }
+
+/* --- PREMIUM FOOTER --- */
+.premium-footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 60px 20px 20px;
+    margin-top: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 40px;
+}
+
+/* Footer Headings with Red Underline */
+.footer-col h4 {
+    color: var(--white);
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-red);
+}
+
+/* Make the logo pop against the dark blue background */
+.footer-logo {
+    height: 65px;
+    background: var(--white);
+    padding: 5px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.brand-col p {
+    color: #d1d9e6;
+    font-size: 14.5px;
+    line-height: 1.6;
+}
+
+/* The Registration Badge */
+.registration-info {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-left: 3px solid var(--primary-red);
+    border-radius: 4px;
+}
+
+.registration-info p {
+    margin: 0 0 5px 0;
+    font-size: 13px;
+    color: #a8b8d0;
+}
+
+.registration-info strong {
+    color: var(--white);
+    letter-spacing: 0.5px;
+}
+
+/* Footer Links */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #d1d9e6;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: inline-block;
+}
+
+/* Hover effect makes links slide slightly to the right */
+.footer-col ul li a:hover {
+    color: var(--primary-red);
+    padding-left: 5px;
+}
+
+/* Contact Info Column */
+.contact-col p {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #d1d9e6;
+    font-size: 14.5px;
+    margin-bottom: 15px;
+}
+
+.contact-col i {
+    color: var(--primary-red);
+    margin-top: 4px;
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--primary-red);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    color: #a8b8d0;
+    font-size: 14px;
+}
+/* --- Premium Inner Page Styles --- */
+.inner-hero {
+    height: 40vh; /* Shorter than the home page banner */
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.inner-hero h1 {
+    font-size: 2.5rem;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+.premium-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.premium-list li {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.premium-list li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-red);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cta-box {
+    background: #f4f7f6;
+    border-left: 5px solid var(--primary-blue);
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 0 8px 8px 0;
+    text-align: center;
+}
+
+/* --- Back to Top Button --- */
+html {
+    scroll-behavior: smooth; /* Makes all page scrolling glide smoothly */
+}
+
+#backToTop {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    z-index: 999; 
+    border: none; 
+    outline: none; 
+    background-color: var(--primary-red); 
+    color: white; 
+    cursor: pointer; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Makes it a perfect circle */
+    font-size: 24px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Starts invisible for the fade effect */
+    pointer-events: none; /* Prevents clicking when invisible */
+}
+
+/* Class added by JavaScript to make it appear */
+#backToTop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#backToTop:hover {
+    background-color: var(--primary-blue); 
+    transform: translateY(-5px); /* Lifts the button slightly when hovered */
+}
+/* --- RESPONSIVE DESIGN (Tablets & Smartphones) --- */
+
+/* The Hamburger Icon (Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--primary-blue);
+}
+/* --- PREMIUM HORIZONTAL SOCIAL FEEDS --- */
+.social-grid {
+    display: flex;
+    flex-direction: column; /* Stacks the 4 categories as full-width rows */
+    gap: 40px; /* Adds generous breathing room between categories */
+    margin-top: 40px;
+}
+
+.social-slot {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08); /* Softer, premium shadow */
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    width: 100%; /* Forces the slot to stretch all the way across the container */
+}
+
+.social-header {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 20px 25px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-header h3 {
+    margin: 0;
+    color: var(--white);
+    font-size: 20px; /* Made the text larger */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hashtag {
+    font-size: 14px; /* Larger hashtag */
+    background: rgba(255,255,255,0.2);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.social-feed-container {
+    background: #fdfdfd;
+    min-height: 400px; /* Made it much taller to hold large posts */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    /* This ensures any overflow scrolls left-to-right, not up-and-down */
+    overflow-x: auto; 
+    overflow-y: hidden;
+}
+
+@media (max-width: 768px) {
+   /* --- 1. SLEEK MOBILE TOP BAR --- */
+    
+    /* Hide the email and 24/7 text to save screen space */
+    .top-bar-contact span:first-child,
+    .top-bar-hours {
+        display: none;
+    }
+
+    /* Center the phone number on a single elegant line */
+    .top-bar {
+        padding: 8px 10px;
+        justify-content: right;
+    }
+
+    /* Prevent any stacking */
+    .top-bar-contact {
+        flex-direction: row; 
+    }
+
+    /* Make the phone number stand out clearly */
+    .top-bar-contact span {
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+    }
+
+    /* ... (Keep your existing hamburger menu and dropdown CSS below this) ... */
+
+    /* Show the hamburger icon */
+    .menu-toggle {
+        display: block; 
+    }
+
+    /* --- 1. THE SMOOTH SLIDE-DOWN MENU --- */
+    nav {
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        border-top: 2px solid var(--primary-blue);
+        
+        /* The Magic Smooth Animation */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px); /* Starts slightly pulled up */
+        transition: all 0.3s ease-in-out; /* Smoothly transitions everything */
+    }
+
+    /* The class JavaScript adds when the hamburger is clicked */
+    nav.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); /* Slides down into place */
+    }
+
+    /* Change the menu to a vertical list */
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Standard Menu Links on Mobile */
+    nav ul li a {
+        display: block;
+        padding: 15px 0;
+        /* The magic that makes the pop-out smooth */
+        transition: transform 0.2s ease-out, color 0.2s ease, background-color 0.2s ease; 
+    }
+
+    /* The Pop-Out Effect when tapped/hovered */
+    nav ul li a:hover, 
+    nav ul li a:active {
+        transform: scale(1.05); /* Grows the link by 5% */
+        color: var(--primary-red);
+        background-color: #f4f7f6; /* Adds a soft premium background block */
+        border-radius: 8px; /* Smooth corners */
+        font-weight: bold;
+    }
+
+    /* Remove the sliding red line on mobile */
+    nav ul li a.nav-link::after {
+        display: none !important; 
+    }
+
+    /* --- 2. FIXING THE MOBILE "GET IN TOUCH" BUTTON --- */
+    nav ul li a.nav-cta {
+        display: block;
+        margin: 15px auto 20px auto; /* Adds space around the button */
+        width: 80%; /* Prevents it from touching the screen edges */
+        padding: 12px 0;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 51, 102, 0.2);
+    }
+    
+    /* Remove the bottom border from the last list item so it looks cleaner */
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    /* Shrink the huge banner text for small phone screens */
+    .hero-parallax h1 {
+        font-size: 2rem;
+    }
+    
+    .inner-hero h1 {
+        font-size: 1.8rem;
+    }
+    /* --- MOBILE DROPDOWN TWEAKS --- */
+    .dropdown-menu {
+        position: static; 
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background-color: #f9f9f9; 
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .dropdown-menu li a {
+        padding: 12px 0;
+        font-size: 14.5px;
+        color: var(--text-light); 
+        transition: transform 0.2s ease-out, color 0.2s ease;
+    }
+
+    /* Dropdown specific pop-out */
+    .dropdown-menu li a:hover,
+    .dropdown-menu li a:active {
+        transform: scale(1.05) translateX(5px); /* Grows AND slightly nudges right */
+        color: var(--primary-blue);
+        background-color: transparent;
+    }
+
+    /* Protect the Get in Touch button's shape */
+    nav ul li a.nav-cta:hover,
+    nav ul li a.nav-cta:active {
+        transform: scale(1.05) translateY(-2px); /* Pops out and lifts up slightly */
+        background-color: var(--primary-red);
+        color: var(--white) !important;
+    }
+}
