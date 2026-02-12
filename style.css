@@ -155,9 +155,9 @@ nav ul li a.nav-link.active {
 
 /* Show the menu when hovering over the "Services" word OR the menu itself */
 .dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
 }
 
 .dropdown-menu li {
@@ -761,6 +761,9 @@ html {
     color: #666;
     line-height: 1.4;
 }
+.arrow-btn{
+    display: none;
+}
 
 @media (max-width: 768px) {
    /* --- 1. SLEEK MOBILE TOP BAR --- */
@@ -846,7 +849,7 @@ html {
     }
 
     /* The Pop-Out Effect when tapped/hovered */
-    nav ul li a:hover, 
+     
     nav ul li a:active {
         transform: scale(1.05); /* Grows the link by 5% */
         color: var(--primary-red);
@@ -892,23 +895,77 @@ html {
     /* --- 3. STICKY SUBMENU (No Hover Glitch) --- */
     .dropdown-menu {
         display: none; /* Hidden by default */
-        width: 100%;
-        background-color: #f8fbfd;
-        border-left: 4px solid var(--primary-blue);
-        padding: 0;
-        box-sizing: border-box;
+    width: 100%;
+    background-color: #f8fbfd;
+    border-left: 4px solid var(--primary-blue);
+    padding: 0;
+    box-sizing: border-box;
     }
 
     /* ONLY open when the 'active' class is added by JavaScript */
     /* We REMOVED the :hover rule here to prevent the "Shrink" glitch */
     .dropdown.active .dropdown-menu {
-        display: block;
-        animation: fadeIn 0.3s ease;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        display: flex !important; /* Forces it to show regardless of desktop rules */
+    }
+    
+    .dropdown.active .arrow-btn {
+    transform: rotate(180deg);
+    color: var(--primary-blue);
+    background-color: #f9f9f9;
+}
+
+   
+     /* --- SEPARATE ARROW BUTTON LOGIC (Final Alignment Fix) --- */
+
+    .menu-row {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        border-bottom: 1px solid #eee;
     }
 
-    .dropdown.active > .nav-link::after {
+    .menu-row .nav-link {
+        flex: 1; /* Takes up all available space */
+        border-bottom: none !important;
+        padding: 15px 0 !important;
+        
+        /* THE CENTERING FIX */
+        justify-content: center;
+        display: block;
+        
+        /* The arrow button is 50px wide. 
+           To make the text stay in the center of the SCREEN, 
+           we add 50px of margin to the left to balance it.
+        */
+        margin-left: 50px; 
+    }
+
+    .arrow-btn {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #999;
+        cursor: pointer;
+        border-left: 1px solid #f0f0f0;
+        transition: transform 0.3s ease;
+    }
+
+    /* 4. Rotate Arrow when Open */
+    .dropdown.active .arrow-btn {
         transform: rotate(180deg);
         color: var(--primary-blue);
+        background-color: #f9f9f9;
+    }
+
+    /* 5. Hide Old Arrow */
+    .dropdown > .nav-link::after {
+        display: none !important;
     }
 
     /* Protect the Get in Touch button's shape */

@@ -1,8 +1,8 @@
-/* MEDMIX HEALTHCARE - FINAL SCRIPT (With Toggle Fix) */
+/* MEDMIX HEALTHCARE - FINAL ARROW SCRIPT */
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 1. MOBILE MENU & RESET LOGIC ---
+    // --- 1. HAMBURGER MENU TOGGLE ---
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -10,51 +10,39 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('show');
-            
             if (nav.classList.contains('show')) {
-                // Menu Opened: Show X
                 menuToggle.innerText = "✕";
             } else {
-                // Menu Closed: Show Hamburger AND RESET Submenus
                 menuToggle.innerText = "☰";
-                
-                // Reset (Close) all submenus so they are fresh next time
+                // Reset submenus when closing main menu
                 dropdowns.forEach(el => el.classList.remove('active'));
             }
         });
     }
 
-    // --- 2. SUBMENU TOGGLE LOGIC (Fixed) ---
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            
-            // CHECK: Is this the "Services" link?
-            if (this.parentElement.classList.contains('dropdown')) {
-                
-                // Only toggle on mobile screens
-                if (window.innerWidth <= 768) {
-                    e.preventDefault(); // Stop page load
-                    
-                    // THE FIX: "toggle" instead of "add"
-                    // This allows you to Open AND Close it by clicking.
-                    this.parentElement.classList.toggle('active'); 
-                }
-                return; // Stop here (don't close the main menu)
-            }
+    // --- 2. ARROW BUTTON LOGIC (Enhanced Sticky Fix) ---
+    const arrowButtons = document.querySelectorAll('.arrow-btn');
 
-            // FOR ALL OTHER LINKS (Training, Contact, etc.):
-            // Close the main menu naturally
-            if (nav.classList.contains('show')) {
-                nav.classList.remove('show');
-                menuToggle.innerText = "☰";
-                
-                // Reset submenu
-                dropdowns.forEach(el => el.classList.remove('active'));
+    arrowButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            e.stopPropagation();
+
+            const parentDropdown = this.closest('.dropdown');
+            
+            // Toggle 'active' on the current dropdown
+            const isActive = parentDropdown.classList.contains('active');
+            
+            // Close any other open dropdowns first (Optional: for a cleaner look)
+            document.querySelectorAll('.dropdown').forEach(el => el.classList.remove('active'));
+
+            // If it wasn't active, open it now
+            if (!isActive) {
+                parentDropdown.classList.add('active');
             }
         });
     });
-
-
+    
     // --- 3. BACK TO TOP BUTTON ---
     const backToTopButton = document.getElementById("backToTop");
     if (backToTopButton) {
