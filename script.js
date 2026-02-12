@@ -1,38 +1,75 @@
-/* MEDMIX HEALTHCARE - MAIN SCRIPT 
-   Updated: handling Training & Contact forms + Success Page 
-*/
+/* MEDMIX HEALTHCARE - FINAL SCRIPT (With Toggle Fix) */
 
-// --- 1. MOBILE MENU TOGGLE ---
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('nav');
+document.addEventListener('DOMContentLoaded', function() {
 
-if (menuToggle && nav) {
-    menuToggle.addEventListener('click', () => {
-        nav.classList.toggle('show');
-        
-        // Change icon from ☰ to X
-        if (nav.classList.contains('show')) {
-            menuToggle.innerText = "✕";
-        } else {
-            menuToggle.innerText = "☰";
-        }
+    // --- 1. MOBILE MENU & RESET LOGIC ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('show');
+            
+            if (nav.classList.contains('show')) {
+                // Menu Opened: Show X
+                menuToggle.innerText = "✕";
+            } else {
+                // Menu Closed: Show Hamburger AND RESET Submenus
+                menuToggle.innerText = "☰";
+                
+                // Reset (Close) all submenus so they are fresh next time
+                dropdowns.forEach(el => el.classList.remove('active'));
+            }
+        });
+    }
+
+    // --- 2. SUBMENU TOGGLE LOGIC (Fixed) ---
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            
+            // CHECK: Is this the "Services" link?
+            if (this.parentElement.classList.contains('dropdown')) {
+                
+                // Only toggle on mobile screens
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // Stop page load
+                    
+                    // THE FIX: "toggle" instead of "add"
+                    // This allows you to Open AND Close it by clicking.
+                    this.parentElement.classList.toggle('active'); 
+                }
+                return; // Stop here (don't close the main menu)
+            }
+
+            // FOR ALL OTHER LINKS (Training, Contact, etc.):
+            // Close the main menu naturally
+            if (nav.classList.contains('show')) {
+                nav.classList.remove('show');
+                menuToggle.innerText = "☰";
+                
+                // Reset submenu
+                dropdowns.forEach(el => el.classList.remove('active'));
+            }
+        });
     });
-}
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        if (nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.innerText = "☰";
-        }
-    });
-});
 
 
+    // --- 3. BACK TO TOP BUTTON ---
+    const backToTopButton = document.getElementById("backToTop");
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) backToTopButton.classList.add('show');
+            else backToTopButton.classList.remove('show');
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
 
-// --- 2. FORM SUBMISSION (CONTACT & TRAINING) ---
+    // --- 4. FORM SUBMISSION (CONTACT & TRAINING) ---
 const contactForm = document.getElementById('contact-form');
 
 if (contactForm) {
@@ -131,19 +168,4 @@ if (contactForm) {
         });
     });
 }
-// ---3 BACK TO TOP BUTTON (Updated) ---
-const backToTopButton = document.getElementById("backToTop");
-
-if (backToTopButton) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopButton.classList.add('show'); // Adds the CSS class
-        } else {
-            backToTopButton.classList.remove('show'); // Removes it
-        }
-    });
-
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
+});
