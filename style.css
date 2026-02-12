@@ -192,7 +192,7 @@ nav ul li a.nav-link.active {
     background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(12, 67, 122, 0.7)), url('assets/images/hero-bg.jpg');
     height: 60vh;
     background-attachment: fixed; /* THIS creates the scroll effect */
-    background-position: top;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -212,6 +212,50 @@ nav ul li a.nav-link.active {
     font-size: 1.2rem;
     max-width: 700px;
     margin: 0 auto;
+}
+/*BACK BUTTON SERVICES*/
+.back-link-pill {
+  /* Shape & Layout */
+  display: inline-flex; /* Keeps arrow and text aligned */
+  align-items: center;
+  gap: 8px; /* Space between arrow and text */
+  padding: 12px 28px;
+  margin-bottom: 20px;
+  border-radius: 50px; /* The Pill Shape */
+  
+  /* Initial State (Solid Color) */
+  background-color: var(--primary-blue); /* Your brand red */
+  color: #ffffff; /* Text is White */
+  border: 1px solid transparent; /* Keeps sizing consistent */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Nice depth */
+  
+  /* Typography */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  
+  /* Smooth Animation */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* The Arrow */
+.back-link-pill .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effects */
+.back-link-pill:hover {
+  background-color: #e02727; /* Change to your preferred ORANGE here */
+  color: #ffffff; /* Text REMAINS white */
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3); /* Orange glow shadow */
+}
+
+/* Optional: Slide arrow on hover */
+.back-link-pill:hover .arrow {
+  transform: translateX(-4px);
 }
 
 /* --- Main Content Containers --- */
@@ -261,7 +305,7 @@ h1, h2, h3 { color: var(--primary-white); }
 
 .service-img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
 }
 
@@ -505,18 +549,18 @@ html {
     display: none; /* Hidden by default */
     position: fixed; 
     bottom: 30px; 
-    right: 30px; 
+    right: 10px; 
     z-index: 999; 
     border: none; 
     outline: none; 
-    background-color: var(--primary-red); 
+    background-color: var(--text-dark); 
     color: white; 
     cursor: pointer; 
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Makes it a perfect circle */
+    border-radius: 40%; /* Makes it a perfect circle */
     font-size: 24px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     transition: background-color 0.3s, transform 0.3s;
     display: flex;
     justify-content: center;
@@ -532,7 +576,7 @@ html {
 }
 
 #backToTop:hover {
-    background-color: var(--primary-blue); 
+    background-color: var(--primary-red); 
     transform: translateY(-5px); /* Lifts the button slightly when hovered */
 }
 /* --- RESPONSIVE DESIGN (Tablets & Smartphones) --- */
@@ -602,6 +646,112 @@ html {
     overflow-y: hidden;
 }
 
+/* --- PREMIUM CIRCULAR LEADERSHIP SECTION --- */
+.leadership-section {
+    background: #f9fbfd; /* Very light, clean background */
+    padding: 50px 0;
+    text-align: center;
+}
+
+.leadership-section h2 {
+    margin-bottom: 40px;
+    color: var(--primary-blue);
+    font-size: 2rem;
+}
+
+/* THE GRID CONTAINER */
+.leaders-grid {
+    display: flex;
+    justify-content: center; /* Centers them in the middle of the page */
+    gap: 50px; /* Space between the two directors */
+    flex-wrap: nowrap; /* Forces them to stay on the same line */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* THE CARD (Minimalist) */
+.leader-card {
+    background: transparent; /* No boxy background */
+    box-shadow: none; /* Clean look */
+    border: none;
+    width: 250px; /* Fixed width for desktop */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers image and text */
+    text-align: center;
+}
+
+/* CIRCULAR IMAGE STYLING */
+.leader-img-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* Perfect circle */
+    
+    /* THE PREMIUM LAYERING */
+    border: 5px solid #ffffff; /* Inner white spacer */
+    outline: 2px solid var(--primary-blue); /* Outer thin elegant ring */
+    outline-offset: -2px; /* Pulls the outline snug against the border */
+    
+    /* THE FLOATING SHADOW */
+    box-shadow: 0 10px 25px rgba(0, 51, 102, 0.15); /* Soft blue-ish shadow */
+    
+    overflow: hidden;
+    margin: 0 auto 20px auto; /* Center it */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy premium feel */
+    position: relative;
+    z-index: 1;
+}
+
+.leader-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.5s ease;
+}
+
+/* Hover Effect */
+.leader-card:hover .leader-img-container {
+    transform: translateY(-5px) scale(1.02); /* Lifts up and grows slightly */
+    outline-color: var(--primary-red); /* Ring turns red smoothly */
+    box-shadow: 0 15px 35px rgba(220, 53, 69, 0.2); /* Shadow glows red */
+}
+
+.leader-card:hover .leader-img {
+    transform: scale(1.1); /* Smooth zoom inside the circle */
+}
+
+/* TEXT STYLING */
+.leader-info h3 {
+    margin: 0;
+    color: var(--primary-blue);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.leader-title {
+    display: block;
+    margin-top: 5px;
+    color: var(--primary-red);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.leader-line {
+    width: 40px;
+    height: 2px;
+    background-color: #ddd;
+    margin: 10px auto;
+}
+
+.leader-info p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
 @media (max-width: 768px) {
    /* --- 1. SLEEK MOBILE TOP BAR --- */
     
@@ -646,18 +796,22 @@ html {
         box-shadow: 0 10px 15px rgba(0,0,0,0.1);
         border-top: 2px solid var(--primary-blue);
         
-        /* The Magic Smooth Animation */
+        /* The Ghost Click Fix: */
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-15px); /* Starts slightly pulled up */
-        transition: all 0.3s ease-in-out; /* Smoothly transitions everything */
+        pointer-events: none; /* <--- ADD THIS! This makes clicks pass through the invisible menu */
+        
+        transform: translateY(-15px); 
+        transition: all 0.3s ease-in-out; 
+        z-index: 999; /* Ensures it sits above everything else when open */
     }
 
     /* The class JavaScript adds when the hamburger is clicked */
     nav.show {
         opacity: 1;
         visibility: visible;
-        transform: translateY(0); /* Slides down into place */
+        pointer-events: auto; /* <--- ADD THIS! This re-enables clicking when the menu is open */
+        transform: translateY(0); 
     }
 
     /* Change the menu to a vertical list */
@@ -719,6 +873,12 @@ html {
     .inner-hero h1 {
         font-size: 1.8rem;
     }
+
+    .service-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
     /* --- MOBILE DROPDOWN TWEAKS --- */
     .dropdown-menu {
         position: static; 
@@ -752,5 +912,54 @@ html {
         transform: scale(1.05) translateY(-2px); /* Pops out and lifts up slightly */
         background-color: var(--primary-red);
         color: var(--white) !important;
+    }
+
+    /* --- PREMIUM CIRCULAR LEADERSHIP SECTION --- */
+    .leadership-section {
+        padding: 30px 10px; /* Reduce padding to save space */
+    }
+
+    .leaders-grid {
+        gap: 15px; /* Bring them closer together */
+        align-items: flex-start; /* Aligns them at the top */
+    }
+
+    .leader-card {
+        width: 48%; /* Forces them to share the screen width */
+    }
+
+    /* Keep the premium look but make it smaller for phones */
+    /* --- MOBILE PREMIUM TWEAK --- */
+    .leader-img-container {
+        width: 125px; /* Slightly smaller is more elegant on mobile */
+        height: 125px;
+        
+        /* 1. The Inner White Frame */
+        border: 3px solid #ffffff; 
+        
+        /* 2. The Magic: Outer Ring + Floating Shadow combined */
+        box-shadow: 
+            0 0 0 2px var(--primary-blue),  /* Creates a thin blue ring OUTSIDE the white border */
+            0 8px 20px rgba(0, 0, 0, 0.1);  /* Adds a soft, expensive-looking drop shadow */
+            
+        margin-bottom: 15px; /* Give the name a bit more breathing room */
+        border-radius: 50%; /* Ensure it stays circular */
+    }
+
+    .leader-info h3 {
+        font-size: 1.1rem; /* Smaller Name */
+    }
+
+    .leader-title {
+        font-size: 0.75rem; /* Smaller Title */
+    }
+
+    .leader-info p {
+        font-size: 0.8rem; /* Smaller Description */
+        display: none; /* OPTIONAL: Hides the paragraph text on mobile to save even more space. Delete this line if you want to keep the text. */
+    }
+    
+    .leader-line {
+        margin: 5px auto;
     }
 }

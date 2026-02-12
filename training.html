@@ -11,7 +11,7 @@
     <header>
         <div class="top-bar">
             <div class="top-bar-contact">
-                <span>✉ medmixprivatelimited@gmail.com</span>
+                <span>✉ healthcaremedmix@gmail.com</span>
                 <span>📞 +91 81782 19164</span>
             </div>
             <div class="top-bar-hours">
@@ -69,7 +69,7 @@
 
         <div style="flex: 1; min-width: 300px; background: #fdfdfd; padding: 30px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
             <h2 style="margin-top: 0; text-align: center;">Admission Enquiry</h2>
-            <p style="text-align: center; font-size: 0.95rem; color: #666;">Fill out this form and our academic counselor will contact you.</p>
+            <p style="text-align: center; font-size: 1rem; color: #eb1919; font-weight: 600;">Fill out this form and our academic counselor will contact you.</p>
             
             <form id="contact-form">
                 <label>Student Name</label>
@@ -79,11 +79,20 @@
                 <input type="text" id="email" placeholder="Best way to reach you" required>
 
                 <label>Course of Interest</label>
-                <input type="text" id="subject" value="Interested in Training Courses" required>
+                <select id="subject" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="" disabled selected>-- Select a Course --</option>
+                    <option value="GDA Training">GDA Training</option>
+                    <option value="Nursing Assistant Training">Nursing Assistant Training</option>
+                    <option value="Baby Care / Nanny Care Training">Baby Care / Nanny Care Training</option>
+                    <option value="Patient Care Training">Patient Care Training</option>
+                    <option value="Practical Based Clinical Training">Practical Based Clinical Training</option>
+                </select>
 
                 <label>Message / Questions</label>
-                <textarea id="message" rows="4" placeholder="Any specific course you are looking for?" required></textarea>
-
+                <textarea id="message" rows="4" placeholder="Any specific questions?" required></textarea>
+                
+                <!--add a "hidden tag" to your form so the script knows this data belongs to the Training tab -->
+                <input type="hidden" id="source" value="training">
                 <button type="submit" class="submit-btn">Submit Enquiry</button>
             </form>
         </div>
@@ -151,11 +160,11 @@
         <div class="footer-col contact-col">
           <h4>Contact Us</h4>
           <p>
-            <i class="fas fa-map-marker-alt"></i> BLK-F3, Nangloi, New Delhi,
+            <i class="fas fa-map-marker-alt"></i> BLK-F3, Sultanpuri, Nangloi, New Delhi,
             West Delhi - 110041
           </p>
           <p><i class="fas fa-phone"></i> +91 81782 19164</p>
-          <p><i class="fas fa-envelope"></i> medmixprivatelimited@gmail.com</p>
+          <p><i class="fas fa-envelope"></i> healthcaremedmix@gmail.com</p>
 
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
