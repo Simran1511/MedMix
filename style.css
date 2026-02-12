@@ -192,7 +192,7 @@ nav ul li a.nav-link.active {
     background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(12, 67, 122, 0.7)), url('assets/images/hero-bg.jpg');
     height: 60vh;
     background-attachment: fixed; /* THIS creates the scroll effect */
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -224,7 +224,7 @@ nav ul li a.nav-link.active {
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-h1, h2, h3 { color: var(--primary-blue); }
+h1, h2, h3 { color: var(--primary-white); }
 
 .motto {
     text-align: center;
@@ -726,7 +726,7 @@ html {
         opacity: 1;
         visibility: visible;
         transform: none;
-        background-color: #f9f9f9; 
+        background-color: #ebebeb; 
         padding: 0;
         border-radius: 0;
     }
