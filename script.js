@@ -30,23 +30,9 @@ document.querySelectorAll('.nav-link').forEach(link => {
 });
 
 
-// --- 2. BACK TO TOP BUTTON ---
-const backToTopButton = document.getElementById("backToTop");
-
-window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        backToTopButton.style.display = "block";
-    } else {
-        backToTopButton.style.display = "none";
-    }
-};
-
-backToTopButton.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
 
 
-// --- 3. FORM SUBMISSION (CONTACT & TRAINING) ---
+// --- 2. FORM SUBMISSION (CONTACT & TRAINING) ---
 const contactForm = document.getElementById('contact-form');
 
 if (contactForm) {
@@ -143,5 +129,21 @@ if (contactForm) {
             submitBtn.innerText = originalText;
             submitBtn.disabled = false;
         });
+    });
+}
+// ---3 BACK TO TOP BUTTON (Updated) ---
+const backToTopButton = document.getElementById("backToTop");
+
+if (backToTopButton) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('show'); // Adds the CSS class
+        } else {
+            backToTopButton.classList.remove('show'); // Removes it
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }

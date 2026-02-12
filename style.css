@@ -542,42 +542,52 @@ input, textarea {
 
 /* --- Back to Top Button --- */
 html {
-    scroll-behavior: smooth; /* Makes all page scrolling glide smoothly */
+    scroll-behavior: smooth; 
 }
 
 #backToTop {
-    display: none; /* Hidden by default */
+    /* 1. REMOVED conflicting 'display' rules. */
+    /* We use fixed positioning, so we don't need display:none here if we use opacity */
+    
     position: fixed; 
     bottom: 30px; 
-    right: 10px; 
+    right: 30px; /* Moved slightly left so it's not sticking to the edge */
     z-index: 999; 
-    border: none; 
-    outline: none; 
-    background-color: var(--text-dark); 
-    color: white; 
-    cursor: pointer; 
+    
+    /* Shape & Color */
     width: 50px;
     height: 50px;
-    border-radius: 40%; /* Makes it a perfect circle */
-    font-size: 24px; 
+    border-radius: 50%; /* 50% makes a perfect circle (40% is slightly square) */
+    background-color: var(--text-dark); 
+    color: white; 
+    border: none; 
+    outline: none; 
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    transition: background-color 0.3s, transform 0.3s;
-    display: flex;
+    
+    /* Centering the Arrow */
+    display: flex;       /* Keeps the arrow centered */
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Starts invisible for the fade effect */
-    pointer-events: none; /* Prevents clicking when invisible */
+    font-size: 24px; 
+    cursor: pointer; 
+    
+    /* Animation State: Hidden */
+    opacity: 0;          /* Invisible */
+    visibility: hidden;  /* truly hides it from screen readers/clicks */
+    transform: translateY(20px); /* Pushes it down slightly */
+    transition: all 0.3s ease;   /* Smooth fade in/out */
 }
 
-/* Class added by JavaScript to make it appear */
+/* 2. The Active State (Added by JavaScript) */
 #backToTop.show {
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0); /* Slides up into place */
 }
 
 #backToTop:hover {
     background-color: var(--primary-red); 
-    transform: translateY(-5px); /* Lifts the button slightly when hovered */
+    transform: translateY(-5px); /* Lifts up on hover */
 }
 /* --- RESPONSIVE DESIGN (Tablets & Smartphones) --- */
 
