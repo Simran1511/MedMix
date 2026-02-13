@@ -8,13 +8,106 @@
     --text-light: #666666;
 }
 
+/* --- PREMIUM "4-DIMENSIONAL" BACKGROUND SYSTEM --- */
+
+/* 1. Define the "Float" Animation */
+@keyframes floatOrbs {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes floatOrbsReverse {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-30px, 50px) scale(1.1); }
+    66% { transform: translate(20px, -20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+/* 2. BASE LAYER (HTML) - Holds the lighter accent orbs */
+html {
+    height: 100%;
+    margin: 0;
+    /* Clean White Base */
+    background-color: #ffffff; 
+    overflow-x: hidden;
+}
+
+/* Orb 1: LIGHT CYAN (Top Right) - Adds "Shine" */
+html::before {
+    content: '';
+    position: fixed;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    /* Cyan/Teal Highlight */
+    background: radial-gradient(circle, rgba(0, 200, 255, 0.12) 0%, rgba(0, 200, 255, 0) 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -2; /* Deepest Layer */
+    animation: floatOrbsReverse 16s infinite ease-in-out;
+}
+
+/* Orb 2: SOFT PINK (Bottom Left) - Adds "Warmth" */
+html::after {
+    content: '';
+    position: fixed;
+    bottom: -100px;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+    /* Soft Pink/Purple Accent */
+    background: radial-gradient(circle, rgba(255, 100, 150, 0.1) 0%, rgba(255, 100, 150, 0) 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -2;
+    animation: floatOrbs 10s infinite ease-in-out;
+}
+
+/* 3. FRONT LAYER (BODY) - Holds the main Brand Colors */
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--light-bg);
-    color: var(--text-dark);
     line-height: 1.6;
+    color: var(--text-dark);
+    min-height: 100vh;
+    position: relative;
+    background-color: transparent; /* Let the HTML background show through */
+}
+
+/* Orb 3: ROYAL BLUE (Top Left) - The Main Brand Anchor */
+body::before {
+    content: '';
+    position: fixed;
+    top: -150px;
+    left: -150px;
+    width: 800px;
+    height: 800px;
+    /* Strong Medmix Blue */
+    background: radial-gradient(circle, rgba(30, 100, 200, 0.22) 0%, rgba(0, 51, 102, 0) 70%);
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: -1;
+    animation: floatOrbs 15s infinite ease-in-out;
+}
+
+/* Orb 4: DEEP RED (Bottom Right) - The Accent Anchor */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -150px;
+    right: -150px;
+    width: 800px;
+    height: 800px;
+    /* Strong Medmix Red */
+    background: radial-gradient(circle, rgba(230, 0, 0, 0.18) 0%, rgba(230, 0, 0, 0) 70%);
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: -1;
+    animation: floatOrbsReverse 9s infinite ease-in-out;
 }
 
 /* --- PREMIUM HEADER & NAV --- */
@@ -42,22 +135,75 @@ body {
     gap: 5px;
 }
 
-/* 2. Main Header Adjustments */
+/* 2. Main Header Container */
 header {
-    background-color: var(--white);
+    /* BASE COLOR: Clean White with 90% opacity to let blobs show through slightly */
+    background-color: rgba(255, 255, 255, 0.9);
+    
+    /* GLASS EFFECT: Blurs the page content behind the header */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
+    
+    /* CRITICAL: We do NOT use overflow: hidden here. 
+       This ensures the dropdown menu can hang out of the box freely. */
     z-index: 1000;
 }
 
+/* 3. ANIMATION LAYER 1: Blue Glow (Left) */
+header::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -100px; /* Push it far left so edges don't show awkwardly */
+    width: 600px;
+    height: 300px; /* Taller than header so it covers it fully */
+    
+    /* Soft Blue Gradient */
+    background: radial-gradient(circle, rgba(0, 51, 102, 0.15) 0%, rgba(0, 51, 102, 0) 70%);
+    
+    filter: blur(50px);
+    z-index: -1; /* Puts it BEHIND the logo and links */
+    pointer-events: none; /* Clicks pass through it */
+    
+    /* Animation */
+    animation: floatOrbs 12s infinite ease-in-out;
+}
+
+/* 4. ANIMATION LAYER 2: Red Glow (Right) */
+header::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -100px;
+    width: 600px;
+    height: 300px;
+    
+    /* Soft Red Gradient */
+    background: radial-gradient(circle, rgba(230, 0, 0, 0.12) 0%, rgba(230, 0, 0, 0) 70%);
+    
+    filter: blur(50px);
+    z-index: -1;
+    pointer-events: none;
+    
+    /* Reverse Animation */
+    animation: floatOrbsReverse 15s infinite ease-in-out reverse;
+}
+
 .nav-container {
+   position: relative;
+    z-index: 2; /* Ensures Logo and Links are ABOVE the gradients */
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 5px 20px; /* Keeps it tight for the large logo */
+    padding: 5px 20px;
+    background: transparent; /* Let the gradients show through */
 }
 
 .logo-img { height: 100px; width: 250px; }
@@ -84,15 +230,15 @@ nav ul li a.nav-link {
 
 /* The Magic Sliding Underline */
 nav ul li a.nav-link::after {
-    content: '';
+   content: '';
     position: absolute;
+    bottom: 0; /* Better than margin-top */
+    left: 0;   /* Pin to left */
     width: 0;
     height: 3px;
     display: block;
-    margin-top: 5px;
-    right: 0;
     background: var(--primary-red);
-    transition: width 0.3s ease, right 0.3s ease;
+    transition: width 0.3s ease;
 }
 
 nav ul li a.nav-link:hover::after,
@@ -125,6 +271,10 @@ nav ul li a.nav-link.active {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(230, 0, 0, 0.3);
 }
+
+
+
+
 /* --- 5. Premium Dropdown Menu (Desktop) --- */
 .dropdown {
     position: relative; /* Acts as an anchor for the dropdown box */
@@ -140,13 +290,13 @@ nav ul li a.nav-link.active {
     border-radius: 8px;
     padding: 10px 0;
     
-    /* Magic Smooth Reveal */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px);
-    transition: all 0.3s ease;
+    /* --- ANIMATION SETTINGS (Start State) --- */
+    opacity: 0; /* CHANGE THIS TO 0 (Invisible start) */
+    visibility: hidden; /* Cannot be clicked */
+    transform: translateY(15px); /* Start slightly lower */
+    transition: all 0.3s ease; /* Smooths the change to the hover state */
     
-    /* Overrides the horizontal layout of the main nav */
+    /* Layout */
     display: flex; 
     flex-direction: column;
     gap: 0;
@@ -155,9 +305,9 @@ nav ul li a.nav-link.active {
 
 /* Show the menu when hovering over the "Services" word OR the menu itself */
 .dropdown:hover .dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px);
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .dropdown-menu li {
@@ -550,9 +700,9 @@ html {
     /* We use fixed positioning, so we don't need display:none here if we use opacity */
     
     position: fixed; 
-    bottom: 30px; 
-    right: 30px; /* Moved slightly left so it's not sticking to the edge */
-    z-index: 999; 
+    bottom: 80px; 
+    right: 15px; /* Moved slightly left so it's not sticking to the edge */
+    z-index: 1000; 
     
     /* Shape & Color */
     width: 50px;
@@ -656,39 +806,39 @@ html {
     overflow-y: hidden;
 }
 
-/* --- PREMIUM CIRCULAR LEADERSHIP SECTION --- */
+/* --- PREMIUM CIRCULAR LEADERSHIP SECTION (With Background Effects) --- */
+
 .leadership-section {
-    background: #f9fbfd; /* Very light, clean background */
-    padding: 50px 0;
-    text-align: center;
+    position: relative;
+    padding: 80px 20px;
+    background: transparent; /* Let the global aura show through */
 }
 
-.leadership-section h2 {
-    margin-bottom: 40px;
-    color: var(--primary-blue);
-    font-size: 2rem;
+
+
+/* 4. Ensure Text/Images sit ON TOP of the background */
+.leadership-section .container {
+    position: relative;
+    z-index: 2;
 }
 
-/* THE GRID CONTAINER */
+/* --- GRID LAYOUT --- */
 .leaders-grid {
     display: flex;
-    justify-content: center; /* Centers them in the middle of the page */
-    gap: 50px; /* Space between the two directors */
-    flex-wrap: nowrap; /* Forces them to stay on the same line */
-    max-width: 900px;
-    margin: 0 auto;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
 }
 
-/* THE CARD (Minimalist) */
 .leader-card {
-    background: transparent; /* No boxy background */
-    box-shadow: none; /* Clean look */
-    border: none;
-    width: 250px; /* Fixed width for desktop */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers image and text */
+    background: rgba(255, 255, 255, 0.6); /* Slight transparency */
+    backdrop-filter: blur(5px); /* Glassmorphism effect */
+    border-radius: 15px;
+    padding: 20px;
     text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease;
 }
 
 /* CIRCULAR IMAGE STYLING */
@@ -765,6 +915,170 @@ html {
     display: none;
 }
 
+
+
+
+/* --- PREMIUM HORIZONTAL SOCIAL FAB (Left Stream) --- */
+.social-fab-container {
+    position: fixed;
+    bottom: 20px; /* Positioned above BackToTop (adjust if needed) */
+    right: 13px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    
+    /* Center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Shared Button Styles */
+.fab-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-size: 22px;
+    position: absolute; /* Stack them all on top of each other */
+    top: 0;
+    right: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Springy effect */
+    cursor: pointer;
+}
+
+/* 1. The Main Toggle (+) */
+.fab-toggle {
+    background: var(--primary-red);
+    z-index: 20; /* Keep on top */
+}
+
+/* Rotate to X and turn Red */
+.social-fab-container.active .fab-toggle {
+    transform: rotate(45deg);
+    background: var(--primary-red);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+/* 2. The Social Buttons (Hidden State) */
+.fab-social {
+    z-index: 10;
+    opacity: 0;
+    transform: translateX(0) scale(0.5); /* Start hidden inside the + button */
+    pointer-events: none; /* Not clickable when hidden */
+}
+
+/* 3. Brand Colors */
+.fab-whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
+.fab-facebook { background: linear-gradient(45deg, #1877F2, #0056b3); }
+.fab-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+
+/* --- THE HORIZONTAL ANIMATION (Slide Left) --- */
+
+/* 1. WhatsApp (Closest) */
+.social-fab-container.active .fab-whatsapp {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-65px) scale(1); 
+    transition-delay: 0.05s;
+}
+
+/* 2. Facebook (Middle) */
+.social-fab-container.active .fab-facebook {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-125px) scale(1);
+    transition-delay: 0.1s;
+}
+
+/* 3. Instagram (Furthest) */
+.social-fab-container.active .fab-instagram {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-185px) scale(1);
+    transition-delay: 0.15s;
+}
+
+/* Hover Effect for Social Icons */
+.social-fab-container.active .fab-whatsapp:hover {
+    transform: translateX(-65px) translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.social-fab-container.active .fab-facebook:hover {
+    transform: translateX(-125px) translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4);
+}
+
+.social-fab-container.active .fab-instagram:hover {
+    transform: translateX(-185px) translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.4);
+}
+
+/* --- CEO PROMINENCE STYLES --- */
+
+/* 1. Center the CEO Row */
+.ceo-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 60px; /* Space between CEO and Directors */
+    position: relative;
+}
+
+/* Optional: A faint vertical line connecting CEO to Directors */
+.ceo-row::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, #d4af37, transparent); /* Gold fade */
+    opacity: 0.4;
+}
+
+/* 2. Make CEO Image Bigger & Premium */
+.ceo-img-ring {
+    width: 200px !important;  /* Significantly larger than Directors (180px) */
+    height: 200px !important;
+    
+    /* THE GOLD ACCENT */
+    border: 5px solid #ffffff; /* Inner white frame */
+    outline: 3px solid #d4af37; /* Gold Outer Ring */
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25); /* Soft Gold Shadow */
+}
+
+/* Hover Effect for CEO */
+.ceo-card:hover .ceo-img-ring {
+    transform: translateY(-8px) scale(1.02);
+    outline-color: #ffd700; /* Bright Gold on hover */
+    box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4);
+}
+
+/* 3. Text Styling for CEO */
+.ceo-card h3 {
+    font-size: 1.8rem !important; /* Larger Name */
+    color: var(--primary-blue);
+    margin-top: 20px;
+}
+
+.ceo-card .leader-title {
+    color: #e91111; /* Gold Title text */
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+
 @media (max-width: 768px) {
    /* --- 1. SLEEK MOBILE TOP BAR --- */
     
@@ -816,7 +1130,7 @@ html {
         
         transform: translateY(-15px); 
         transition: all 0.3s ease-in-out; 
-        z-index: 999; /* Ensures it sits above everything else when open */
+        z-index: 1001; /* Ensures it sits above everything else when open */
     }
 
     /* The class JavaScript adds when the hamburger is clicked */
@@ -849,14 +1163,15 @@ html {
     }
 
     /* The Pop-Out Effect when tapped/hovered */
-     
-    nav ul li a:active {
-        transform: scale(1.05); /* Grows the link by 5% */
-        color: var(--primary-red);
-        background-color: #f4f7f6; /* Adds a soft premium background block */
-        border-radius: 8px; /* Smooth corners */
-        font-weight: bold;
-    }
+nav ul li a.nav-link:hover, /* Added HOVER state */
+nav ul li a.nav-link:active { /* Keeps the click state */
+    transform: scale(1.05); /* Grows the link by 5% */
+    color: var(--primary-red);
+    background-color: #f4f7f6; /* Adds a soft premium background block */
+    border-radius: 8px; /* Smooth corners */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Optional: Adds depth */
+}
 
     /* Remove the sliding red line on mobile */
     nav ul li a.nav-link::after {
@@ -976,52 +1291,113 @@ html {
         color: var(--white) !important;
     }
 
-    /* --- PREMIUM CIRCULAR LEADERSHIP SECTION --- */
-    .leadership-section {
-        padding: 30px 10px; /* Reduce padding to save space */
+/* --- MOBILE LEADERSHIP TWEAKS --- */
+  .leadership-section {
+        padding: 40px 15px;
     }
 
     .leaders-grid {
-        gap: 15px; /* Bring them closer together */
-        align-items: flex-start; /* Aligns them at the top */
+        gap: 20px; /* Closer together on phone */
+        align-items: center;
+        flex-direction: column; /* Stack them vertically */
     }
 
     .leader-card {
-        width: 48%; /* Forces them to share the screen width */
+        width: 100%; 
+        max-width: 300px; /* Prevents them from getting too wide */
+        margin-bottom: 20px;
     }
 
-    /* Keep the premium look but make it smaller for phones */
-    /* --- MOBILE PREMIUM TWEAK --- */
     .leader-img-container {
-        width: 125px; /* Slightly smaller is more elegant on mobile */
-        height: 125px;
+        width: 140px; /* Slightly smaller is more elegant on mobile */
+        height: 140px;
+        margin: 0 auto 15px auto; /* Center it */
         
         /* 1. The Inner White Frame */
-        border: 3px solid #ffffff; 
+        border: 4px solid #ffffff; 
         
         /* 2. The Magic: Outer Ring + Floating Shadow combined */
         box-shadow: 
-            0 0 0 2px var(--primary-blue),  /* Creates a thin blue ring OUTSIDE the white border */
-            0 8px 20px rgba(0, 0, 0, 0.1);  /* Adds a soft, expensive-looking drop shadow */
+            0 0 0 2px var(--primary-blue), 
+            0 8px 20px rgba(0, 0, 0, 0.15); 
             
-        margin-bottom: 15px; /* Give the name a bit more breathing room */
-        border-radius: 50%; /* Ensure it stays circular */
+        border-radius: 50%;
     }
 
     .leader-info h3 {
-        font-size: 1.1rem; /* Smaller Name */
+        font-size: 1.2rem;
     }
 
     .leader-title {
-        font-size: 0.75rem; /* Smaller Title */
+        font-size: 0.85rem;
     }
 
-    .leader-info p {
-        font-size: 0.8rem; /* Smaller Description */
-        display: none; /* OPTIONAL: Hides the paragraph text on mobile to save even more space. Delete this line if you want to keep the text. */
+    .leader-line {
+        margin: 8px auto;
+    }
+
+   
+
+
+    /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
+   .social-fab-container {
+        right: 10px;
+        bottom: 10px; 
+    }
+
+    .fab-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    
+    /* Mobile Positions (Closer together) */
+    .social-fab-container.active .fab-whatsapp { transform: translateX(-55px) scale(1); }
+    .social-fab-container.active .fab-facebook { transform: translateX(-105px) scale(1); }
+    .social-fab-container.active .fab-instagram { transform: translateX(-155px) scale(1); }
+
+    /* Mobile Hover Fix (Updates positions for smaller screens) */
+    .social-fab-container.active .fab-whatsapp:hover {
+        transform: translateX(-55px) translateY(-3px) scale(1.1);
+    }
+    .social-fab-container.active .fab-facebook:hover {
+        transform: translateX(-105px) translateY(-3px) scale(1.1);
+    }
+    .social-fab-container.active .fab-instagram:hover {
+        transform: translateX(-155px) translateY(-3px) scale(1.1);
+    }
+
+    /* Optional: Resize Back to Top to match */
+    #backToTop {
+        width: 45px;
+        height: 45px;
+        right: 10px;
+        bottom: 70px;
+        font-size: 18px;
+    }
+
+    /* --- CEO PROMINENCE STYLES --- */
+
+    .ceo-img-ring {
+        width: 170px !important; /* Slightly smaller on phone, but still distinct */
+        height: 170px !important;
+    }
+
+    .ceo-card h3 {
+        font-size: 1.5rem !important;
     }
     
-    .leader-line {
-        margin: 5px auto;
+    .ceo-row {
+        margin-bottom: 40px;
+    }
+    
+    .ceo-row::after {
+        display: none; /* Hide connector line on small screens */
     }
 }
+
+    
+   
+
+

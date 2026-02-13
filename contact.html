@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us | Medmix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -80,6 +81,22 @@
       <p>
         Delhi, Noida, Gurugram, Ghaziabad, Faridabad (Entire Delhi NCR Region)
       </p>
+
+      <!--THIS IS THE MAP SECTION -->
+      <div style="
+      width: 100%; 
+      height: 280px; /* Fits perfectly in the column */
+      margin-top: 30px; 
+      border-radius: 12px; 
+      overflow: hidden; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+      border: 4px solid #ffffff;">
+
+        <iframe width="100%" height="100%" id="gmap_canvas_side"
+          src="https://maps.google.com/maps?q=BLK-F3%2C%20Sultanpuri%2C%20Nangloi%2C%20New%20Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+        </iframe>
+      </div>
     </div>
 
     <div style="
@@ -96,11 +113,38 @@
         <label>Name</label>
         <input type="text" id="name" required />
 
-        <label>Email / Phone</label>
-        <input type="text" id="email" required />
+        <label>Email</label>
+        <input type="email" id="email" required placeholder="example@gmail.com" />
 
-        <label>Requirement / Subject</label>
-        <input type="text" id="subject" placeholder="e.g. Need Nursing Staff" required />
+        <label>Phone Number</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          required 
+          pattern="[0-9]{10}" 
+          maxlength="10" 
+          placeholder="10-digit mobile number" 
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+          title="Please enter exactly 10 digits"
+        />
+
+        <label>Requirement</label>
+        <select id="subject" required style="
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 20px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            font-family: inherit; 
+            background: white;
+        ">
+            <option value="" disabled selected>-- Select a Service --</option>
+            <option value="Patient Care">Patient & Nursing Care</option>
+            <option value="Mother & Baby Care">Mother & Baby Care</option>
+            <option value="ICU Equipment">ICU & Medical Equipment</option>
+            <option value="Old Age Care">Old Age Home Care</option>
+            <option value="Others">Others</option>
+        </select>
 
         <label>Message</label>
         <textarea id="message" rows="4" required></textarea>
@@ -109,6 +153,29 @@
       </form>
     </div>
   </div>
+
+  <!--This social medial floating icon FWI buttons-->
+  <div class="social-fab-container">
+    <a href="https://instagram.com/" target="_blank" class="fab-btn fab-social fab-instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://facebook.com/" target="_blank" class="fab-btn fab-social fab-facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://wa.me/919876543210" target="_blank" class="fab-btn fab-social fab-whatsapp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button class="fab-btn fab-toggle" id="socialFabToggle">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+
+
+
+
   <button id="backToTop" title="Go to top">↑</button>
 
   <footer class="premium-footer">

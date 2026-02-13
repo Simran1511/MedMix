@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Training Institute | Medmix Healthcare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -131,9 +132,11 @@
       <form id="contact-form">
         <label>Student Name</label>
         <input type="text" id="name" placeholder="Enter your full name" required />
+        <label>E-mail</label>
 
-        <label>Phone Number / Email</label>
-        <input type="text" id="email" placeholder="Best way to reach you" required />
+        <input type="email" id="email" placeholder="Your Email (Mandatory)" required>
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="Phone Number (Mandatory)" maxlength="10" pattern="\d{10}" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
 
         <label>Course of Interest</label>
         <select id="subject" required style="
@@ -166,6 +169,24 @@
       </form>
     </div>
   </div>
+  <!--This social medial floating icon FWI buttons-->
+  <div class="social-fab-container">
+    <a href="https://instagram.com/" target="_blank" class="fab-btn fab-social fab-instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+    
+    <a href="https://facebook.com/" target="_blank" class="fab-btn fab-social fab-facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    
+    <a href="https://wa.me/919876543210" target="_blank" class="fab-btn fab-social fab-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button class="fab-btn fab-toggle" id="socialFabToggle">
+        <i class="fas fa-plus"></i>
+    </button>
+</div>
   <button id="backToTop" title="Go to top">↑</button>
 
   <footer class="premium-footer">
