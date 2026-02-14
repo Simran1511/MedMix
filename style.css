@@ -1341,7 +1341,7 @@ nav ul li a.nav-link:active { /* Keeps the click state */
 
     /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
    .social-fab-container {
-        right: 50px;
+        right: 20px !important;
         bottom: 20px; 
     }
 
@@ -1351,11 +1351,10 @@ nav ul li a.nav-link:active { /* Keeps the click state */
         font-size: 20px;
     }
 
-     /* Mobile Positions (Closer together) */
-    .social-fab-container.active .fab-whatsapp { transform: translateX(-55px) scale(1); }
-    .social-fab-container.active .fab-facebook { transform: translateX(-105px) scale(1); }
-    .social-fab-container.active .fab-instagram { transform: translateX(-155px) scale(1); }
-   
+   /* Tighten the spread so they don't hit the left edge of the phone */
+    .social-fab-container.active .fab-whatsapp { transform: translateX(-60px) scale(1); }
+    .social-fab-container.active .fab-facebook { transform: translateX(-115px) scale(1); }
+    .social-fab-container.active .fab-instagram { transform: translateX(-170px) scale(1); }
 
     /* Mobile Hover Fix (Updates positions for smaller screens) */
     .social-fab-container.active .fab-whatsapp:hover {
@@ -1372,7 +1371,7 @@ nav ul li a.nav-link:active { /* Keeps the click state */
     #backToTop {
         width: 45px;
         height: 45px;
-        right: 50px;
+        right: 20px !important;
         bottom: 85px;
         font-size: 18px;
     }
@@ -1394,6 +1393,12 @@ nav ul li a.nav-link:active { /* Keeps the click state */
     
     .ceo-row::after {
         display: none; /* Hide connector line on small screens */
+    }
+    /* 3. Ensure the HTML/Body doesn't allow side-scrolling */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
     }
 }
 
