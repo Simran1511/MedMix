@@ -1342,12 +1342,12 @@ nav ul li a.nav-link:active { /* Keeps the click state */
     /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
    .social-fab-container {
         right: 30px;
-        bottom: 10px; 
+        bottom: 20px; 
     }
 
     .fab-btn {
-        width: 45px;
-        height: 45px;
+        width: 50px;
+        height: 50px;
         font-size: 20px;
     }
 
@@ -1370,10 +1370,10 @@ nav ul li a.nav-link:active { /* Keeps the click state */
 
     /* Optional: Resize Back to Top to match */
     #backToTop {
-        width: 45px;
-        height: 45px;
+        width: 50px;
+        height: 50px;
         right: 30px;
-        bottom: 70px;
+        bottom: 85px;
         font-size: 18px;
     }
 
