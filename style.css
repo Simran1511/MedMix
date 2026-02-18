@@ -1489,77 +1489,7 @@ html {
     }
 
 
- /* --- Mobile Optimization for Social Feeds --- */
-
- /* 1. Reset the grid to stack vertically on screens smaller than 768px */
-
-    
-    /* 1. Container Spacing */
-    .social-grid {
-        padding: 0 15px; /* Prevents cards from touching screen edges */
-        gap: 35px;       /* Adds more breathing room between FB and Insta */
-        margin-top: 20px;
-    }
-
-    /* 2. The Card "Shell" - High-End Look */
-    .social-slot {
-        border: none;
-        border-radius: 24px; /* Very round, modern "iOS style" corners */
-        background: #ffffff;
-        /* A deep, soft shadow creates a "floating" effect */
-        box-shadow: 0 15px 35px rgba(0, 51, 102, 0.12); 
-        overflow: hidden; /* Ensures the header colors don't bleed out */
-        transform: translateZ(0); /* Hardware acceleration for smoother scrolling */
-    }
-
-    /* 3. Brand-Specific Headers (Using nth-child order) */
-    
-    /* First Slot: Facebook - Official Blue */
-    .social-slot:nth-child(1) .social-header {
-        background: linear-gradient(135deg, #1877F2, #0e5fc4);
-        padding: 18px 25px;
-        box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3); /* Blue glow */
-    }
-
-    /* Second Slot: Instagram - Official Gradient */
-    .social-slot:nth-child(2) .social-header {
-        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        padding: 18px 25px;
-        box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3); /* Red/Pink glow */
-    }
-
-    /* 4. Text Polish */
-    .social-header h3 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        color: #ffffff;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .hashtag {
-        background: rgba(255, 255, 255, 0.2); /* Glass effect pill */
-        backdrop-filter: blur(5px);
-        font-size: 0.75rem;
-        padding: 6px 14px;
-        border: 1px solid rgba(255,255,255,0.3);
-    }
-
-    /* 5. The Feed Area */
-    .social-feed-container {
-        background: #ffffff;
-        padding: 15px 10px; /* Inner spacing */
-        min-height: 450px;  /* Taller to show more content */
-    }
-    
-    /* 6. Fix for Curator.io Widget Width on Mobile */
-    /* This forces the external widget to fit your card perfectly */
-    .crt-feed-window {
-        width: 100% !important;
-        margin: 0 !important;
-    }
-
+ 
 }
     
    
