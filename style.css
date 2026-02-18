@@ -238,7 +238,8 @@ header::after {
 
 .logo-img {
     height: 100px;
-    width: 250px;
+    width: 200px;
+
 }
 
 /* 3. Navigation Links & Sliding Underline */
@@ -1678,6 +1679,7 @@ html {
 
     /* 2. The Card Container: Floating & Modern */
     .social-slot {
+        
         background: #ffffff;
         border-radius: 20px;
         /* Smooth iOS-style corners */
@@ -1734,6 +1736,7 @@ html {
         border-radius: 0 0 20px 20px;
         /* Rounds bottom corners of the card only */
         overflow: hidden;
+        
     }
 
 
