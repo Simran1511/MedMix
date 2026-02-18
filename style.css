@@ -1494,59 +1494,70 @@ html {
  /* 1. Reset the grid to stack vertically on screens smaller than 768px */
 
     
+    /* 1. Container Spacing */
     .social-grid {
-        display: flex !important; /* Overrides existing grid/flex row behavior */
-        flex-direction: column;
-        gap: 30px; /* Adds space between Facebook and Instagram sections */
-        padding: 0 10px; /* Prevents content from touching screen edges */
+        padding: 0 15px; /* Prevents cards from touching screen edges */
+        gap: 35px;       /* Adds more breathing room between FB and Insta */
+        margin-top: 20px;
     }
 
-    /* 2. Style the individual slots to look like clean cards */
+    /* 2. The Card "Shell" - High-End Look */
     .social-slot {
-        width: 100%;
+        border: none;
+        border-radius: 24px; /* Very round, modern "iOS style" corners */
         background: #ffffff;
-        border-radius: 15px; /* Smooth rounded corners */
-        box-shadow: 0 4px 15px rgba(161, 37, 37, 0.08); /* Subtle shadow for depth */
-        overflow: hidden; /* Ensures content stays inside rounded corners */
-        margin-bottom: 20px;
+        /* A deep, soft shadow creates a "floating" effect */
+        box-shadow: 0 15px 35px rgba(0, 51, 102, 0.12); 
+        overflow: hidden; /* Ensures the header colors don't bleed out */
+        transform: translateZ(0); /* Hardware acceleration for smoother scrolling */
     }
 
-    /* 3. Polish the Header (Icon + Title) */
-    .social-header {
-       background-color: var(--primary-blue); /* Light gray background for contrast */
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #eaeaea;
+    /* 3. Brand-Specific Headers (Using nth-child order) */
+    
+    /* First Slot: Facebook - Official Blue */
+    .social-slot:nth-child(1) .social-header {
+        background: linear-gradient(135deg, #1877F2, #0e5fc4);
+        padding: 18px 25px;
+        box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3); /* Blue glow */
     }
 
+    /* Second Slot: Instagram - Official Gradient */
+    .social-slot:nth-child(2) .social-header {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        padding: 18px 25px;
+        box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3); /* Red/Pink glow */
+    }
+
+    /* 4. Text Polish */
     .social-header h3 {
-        font-size: 1.2rem;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #ffffff;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* 4. Ensure the Feed Container takes full width */
+    .hashtag {
+        background: rgba(255, 255, 255, 0.2); /* Glass effect pill */
+        backdrop-filter: blur(5px);
+        font-size: 0.75rem;
+        padding: 6px 14px;
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* 5. The Feed Area */
     .social-feed-container {
-        width: 100%;
-        min-height: 400px; /* Prevents layout jump before feed loads */
-        background: #fff;
-        padding: 10px; /* Inner spacing for the feed content */
+        background: #ffffff;
+        padding: 15px 10px; /* Inner spacing */
+        min-height: 450px;  /* Taller to show more content */
     }
-
-
- /* 5. Specific Fix for Curator.io Widgets on Mobile */
- /* This forces the widget to respect the container width */
-
+    
+    /* 6. Fix for Curator.io Widget Width on Mobile */
+    /* This forces the external widget to fit your card perfectly */
     .crt-feed-window {
         width: 100% !important;
-    }
-    /* Hide the 'Powered by Curator' text if it overlaps badly on small screens (Optional) */
-    .crt-logo {
-        font-size: 10px !important;
+        margin: 0 !important;
     }
 
 }
