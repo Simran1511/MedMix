@@ -12,17 +12,39 @@
 
 /* 1. Define the "Float" Animation */
 @keyframes floatOrbs {
-    0% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
-    100% { transform: translate(0, 0) scale(1); }
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
 }
 
 @keyframes floatOrbsReverse {
-    0% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(-30px, 50px) scale(1.1); }
-    66% { transform: translate(20px, -20px) scale(0.9); }
-    100% { transform: translate(0, 0) scale(1); }
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(-30px, 50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(20px, -20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
 }
 
 /* 2. BASE LAYER (HTML) - Holds the lighter accent orbs */
@@ -30,7 +52,7 @@ html {
     height: 100%;
     margin: 0;
     /* Clean White Base */
-    background-color: #ffffff; 
+    background-color: #ffffff;
     overflow-x: hidden;
 }
 
@@ -46,7 +68,8 @@ html::before {
     background: radial-gradient(circle, rgba(0, 200, 255, 0.12) 0%, rgba(0, 200, 255, 0) 70%);
     border-radius: 50%;
     filter: blur(80px);
-    z-index: -2; /* Deepest Layer */
+    z-index: -2;
+    /* Deepest Layer */
     animation: floatOrbsReverse 16s infinite ease-in-out;
 }
 
@@ -75,7 +98,8 @@ body {
     color: var(--text-dark);
     min-height: 100vh;
     position: relative;
-    background-color: transparent; /* Let the HTML background show through */
+    background-color: transparent;
+    /* Let the HTML background show through */
 }
 
 /* Orb 3: ROYAL BLUE (Top Left) - The Main Brand Anchor */
@@ -139,15 +163,15 @@ body::after {
 header {
     /* BASE COLOR: Clean White with 90% opacity to let blobs show through slightly */
     background-color: rgba(255, 255, 255, 0.9);
-    
+
     /* GLASS EFFECT: Blurs the page content behind the header */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
-    
+
     /* CRITICAL: We do NOT use overflow: hidden here. 
        This ensures the dropdown menu can hang out of the box freely. */
     z-index: 1000;
@@ -158,17 +182,21 @@ header::before {
     content: '';
     position: absolute;
     top: -50px;
-    left: -100px; /* Push it far left so edges don't show awkwardly */
+    left: -100px;
+    /* Push it far left so edges don't show awkwardly */
     width: 600px;
-    height: 300px; /* Taller than header so it covers it fully */
-    
+    height: 300px;
+    /* Taller than header so it covers it fully */
+
     /* Soft Blue Gradient */
     background: radial-gradient(circle, rgba(0, 51, 102, 0.15) 0%, rgba(0, 51, 102, 0) 70%);
-    
+
     filter: blur(50px);
-    z-index: -1; /* Puts it BEHIND the logo and links */
-    pointer-events: none; /* Clicks pass through it */
-    
+    z-index: -1;
+    /* Puts it BEHIND the logo and links */
+    pointer-events: none;
+    /* Clicks pass through it */
+
     /* Animation */
     animation: floatOrbs 12s infinite ease-in-out;
 }
@@ -181,32 +209,37 @@ header::after {
     right: -100px;
     width: 600px;
     height: 300px;
-    
+
     /* Soft Red Gradient */
     background: radial-gradient(circle, rgba(230, 0, 0, 0.12) 0%, rgba(230, 0, 0, 0) 70%);
-    
+
     filter: blur(50px);
     z-index: -1;
     pointer-events: none;
-    
+
     /* Reverse Animation */
     animation: floatOrbsReverse 15s infinite ease-in-out reverse;
 }
 
 .nav-container {
-   position: relative;
-    z-index: 2; /* Ensures Logo and Links are ABOVE the gradients */
-    
+    position: relative;
+    z-index: 2;
+    /* Ensures Logo and Links are ABOVE the gradients */
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 5px 20px;
-    background: transparent; /* Let the gradients show through */
+    background: transparent;
+    /* Let the gradients show through */
 }
 
-.logo-img { height: 100px; width: 250px; }
+.logo-img {
+    height: 100px;
+    width: 250px;
+}
 
 /* 3. Navigation Links & Sliding Underline */
 nav ul {
@@ -220,20 +253,23 @@ nav ul {
 
 nav ul li a.nav-link {
     text-decoration: none;
-    color: var(--text-dark); /* Sleek dark grey */
+    color: var(--text-dark);
+    /* Sleek dark grey */
     font-weight: 600;
     font-size: 16px;
-    position: relative; 
+    position: relative;
     padding-bottom: 5px;
     transition: color 0.3s ease;
 }
 
 /* The Magic Sliding Underline */
 nav ul li a.nav-link::after {
-   content: '';
+    content: '';
     position: absolute;
-    bottom: 0; /* Better than margin-top */
-    left: 0;   /* Pin to left */
+    bottom: 0;
+    /* Better than margin-top */
+    left: 0;
+    /* Pin to left */
     width: 0;
     height: 3px;
     display: block;
@@ -247,7 +283,7 @@ nav ul li a.nav-link.active::after {
     left: 0;
 }
 
-nav ul li a.nav-link:hover, 
+nav ul li a.nav-link:hover,
 nav ul li a.nav-link.active {
     color: var(--primary-blue);
 }
@@ -257,7 +293,8 @@ nav ul li a.nav-link.active {
     background-color: var(--primary-blue);
     color: var(--white) !important;
     padding: 10px 24px;
-    border-radius: 30px; /* Premium Pill Shape */
+    border-radius: 30px;
+    /* Premium Pill Shape */
     text-decoration: none;
     font-weight: bold;
     font-size: 15px;
@@ -277,27 +314,33 @@ nav ul li a.nav-link.active {
 
 /* --- 5. Premium Dropdown Menu (Desktop) --- */
 .dropdown {
-    position: relative; /* Acts as an anchor for the dropdown box */
+    position: relative;
+    /* Acts as an anchor for the dropdown box */
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 100%; /* Positions it right below the header */
+    top: 100%;
+    /* Positions it right below the header */
     left: 0;
     background-color: var(--white);
     min-width: 260px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 10px 0;
-    
+
     /* --- ANIMATION SETTINGS (Start State) --- */
-    opacity: 0; /* CHANGE THIS TO 0 (Invisible start) */
-    visibility: hidden; /* Cannot be clicked */
-    transform: translateY(15px); /* Start slightly lower */
-    transition: all 0.3s ease; /* Smooths the change to the hover state */
-    
+    opacity: 0;
+    /* CHANGE THIS TO 0 (Invisible start) */
+    visibility: hidden;
+    /* Cannot be clicked */
+    transform: translateY(15px);
+    /* Start slightly lower */
+    transition: all 0.3s ease;
+    /* Smooths the change to the hover state */
+
     /* Layout */
-    display: flex; 
+    display: flex;
     flex-direction: column;
     gap: 0;
     z-index: 1001;
@@ -333,7 +376,8 @@ nav ul li a.nav-link.active {
 .dropdown-menu li a:hover {
     background-color: var(--light-bg);
     color: var(--primary-red);
-    padding-left: 25px; /* Slight right-shift on hover for a premium feel */
+    padding-left: 25px;
+    /* Slight right-shift on hover for a premium feel */
 }
 
 /* --- Parallax Hero Section (Moving with Scroll) --- */
@@ -341,7 +385,8 @@ nav ul li a.nav-link.active {
     /* Replace 'hero-bg.jpg' with your actual background image name */
     background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(12, 67, 122, 0.7)), url('assets/images/hero-bg.jpg');
     height: 60vh;
-    background-attachment: fixed; /* THIS creates the scroll effect */
+    background-attachment: fixed;
+    /* THIS creates the scroll effect */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -363,49 +408,61 @@ nav ul li a.nav-link.active {
     max-width: 700px;
     margin: 0 auto;
 }
+
 /*BACK BUTTON SERVICES*/
 .back-link-pill {
-  /* Shape & Layout */
-  display: inline-flex; /* Keeps arrow and text aligned */
-  align-items: center;
-  gap: 8px; /* Space between arrow and text */
-  padding: 12px 28px;
-  margin-bottom: 20px;
-  border-radius: 50px; /* The Pill Shape */
-  
-  /* Initial State (Solid Color) */
-  background-color: var(--primary-blue); /* Your brand red */
-  color: #ffffff; /* Text is White */
-  border: 1px solid transparent; /* Keeps sizing consistent */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Nice depth */
-  
-  /* Typography */
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  
-  /* Smooth Animation */
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Shape & Layout */
+    display: inline-flex;
+    /* Keeps arrow and text aligned */
+    align-items: center;
+    gap: 8px;
+    /* Space between arrow and text */
+    padding: 12px 28px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    /* The Pill Shape */
+
+    /* Initial State (Solid Color) */
+    background-color: var(--primary-blue);
+    /* Your brand red */
+    color: #ffffff;
+    /* Text is White */
+    border: 1px solid transparent;
+    /* Keeps sizing consistent */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    /* Nice depth */
+
+    /* Typography */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+
+    /* Smooth Animation */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* The Arrow */
 .back-link-pill .arrow {
-  display: inline-block;
-  transition: transform 0.3s ease;
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 /* Hover Effects */
 .back-link-pill:hover {
-  background-color: #e02727; /* Change to your preferred ORANGE here */
-  color: #ffffff; /* Text REMAINS white */
-  transform: translateY(-2px); /* Slight lift */
-  box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3); /* Orange glow shadow */
+    background-color: #e02727;
+    /* Change to your preferred ORANGE here */
+    color: #ffffff;
+    /* Text REMAINS white */
+    transform: translateY(-2px);
+    /* Slight lift */
+    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+    /* Orange glow shadow */
 }
 
 /* Optional: Slide arrow on hover */
 .back-link-pill:hover .arrow {
-  transform: translateX(-4px);
+    transform: translateX(-4px);
 }
 
 /* --- Main Content Containers --- */
@@ -415,10 +472,14 @@ nav ul li a.nav-link.active {
     padding: 30px;
     background: var(--white);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-h1, h2, h3 { color: var(--primary-white); }
+h1,
+h2,
+h3 {
+    color: var(--primary-white);
+}
 
 .motto {
     text-align: center;
@@ -441,16 +502,17 @@ h1, h2, h3 { color: var(--primary-white); }
     background: var(--white);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none; /* For links */
+    text-decoration: none;
+    /* For links */
     color: inherit;
     display: block;
 }
 
 .service-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 .service-img {
@@ -464,10 +526,13 @@ h1, h2, h3 { color: var(--primary-white); }
     border-top: 4px solid var(--primary-blue);
 }
 
-.service-content h3 { margin-top: 0; }
+.service-content h3 {
+    margin-top: 0;
+}
 
 /* --- Forms & Buttons --- */
-input, textarea {
+input,
+textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -489,7 +554,9 @@ input, textarea {
     width: 100%;
 }
 
-.submit-btn:hover { background-color: var(--primary-red); }
+.submit-btn:hover {
+    background-color: var(--primary-red);
+}
 
 /* --- PREMIUM FOOTER --- */
 .premium-footer {
@@ -635,9 +702,11 @@ input, textarea {
     color: #a8b8d0;
     font-size: 14px;
 }
+
 /* --- Premium Inner Page Styles --- */
 .inner-hero {
-    height: 40vh; /* Shorter than the home page banner */
+    height: 40vh;
+    /* Shorter than the home page banner */
     background-attachment: fixed;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -653,7 +722,7 @@ input, textarea {
 .inner-hero h1 {
     font-size: 2.5rem;
     color: var(--white);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin: 0;
 }
 
@@ -692,53 +761,63 @@ input, textarea {
 
 /* --- Back to Top Button --- */
 html {
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
 }
 
 #backToTop {
     /* 1. REMOVED conflicting 'display' rules. */
     /* We use fixed positioning, so we don't need display:none here if we use opacity */
-    
-    position: fixed; 
-    bottom: 80px; 
-    right: 15px; /* Moved slightly left so it's not sticking to the edge */
-    z-index: 1000; 
-    
+
+    position: fixed;
+    bottom: 80px;
+    right: 15px;
+    /* Moved slightly left so it's not sticking to the edge */
+    z-index: 1000;
+
     /* Shape & Color */
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* 50% makes a perfect circle (40% is slightly square) */
-    background-color: var(--text-dark); 
-    color: white; 
-    border: none; 
-    outline: none; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    
+    border-radius: 50%;
+    /* 50% makes a perfect circle (40% is slightly square) */
+    background-color: var(--text-dark);
+    color: white;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
     /* Centering the Arrow */
-    display: flex;       /* Keeps the arrow centered */
+    display: flex;
+    /* Keeps the arrow centered */
     justify-content: center;
     align-items: center;
-    font-size: 24px; 
-    cursor: pointer; 
-    
+    font-size: 24px;
+    cursor: pointer;
+
     /* Animation State: Hidden */
-    opacity: 0;          /* Invisible */
-    visibility: hidden;  /* truly hides it from screen readers/clicks */
-    transform: translateY(20px); /* Pushes it down slightly */
-    transition: all 0.3s ease;   /* Smooth fade in/out */
+    opacity: 0;
+    /* Invisible */
+    visibility: hidden;
+    /* truly hides it from screen readers/clicks */
+    transform: translateY(20px);
+    /* Pushes it down slightly */
+    transition: all 0.3s ease;
+    /* Smooth fade in/out */
 }
 
 /* 2. The Active State (Added by JavaScript) */
 #backToTop.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0); /* Slides up into place */
+    transform: translateY(0);
+    /* Slides up into place */
 }
 
 #backToTop:hover {
-    background-color: var(--primary-red); 
-    transform: translateY(-5px); /* Lifts up on hover */
+    background-color: var(--primary-red);
+    transform: translateY(-5px);
+    /* Lifts up on hover */
 }
+
 /* --- RESPONSIVE DESIGN (Tablets & Smartphones) --- */
 
 /* The Hamburger Icon (Hidden on Desktop) */
@@ -748,21 +827,26 @@ html {
     cursor: pointer;
     color: var(--primary-blue);
 }
+
 /* --- PREMIUM HORIZONTAL SOCIAL FEEDS --- */
 .social-grid {
     display: flex;
-    flex-direction: column; /* Stacks the 4 categories as full-width rows */
-    gap: 40px; /* Adds generous breathing room between categories */
+    flex-direction: column;
+    /* Stacks the 4 categories as full-width rows */
+    gap: 40px;
+    /* Adds generous breathing room between categories */
     margin-top: 40px;
 }
 
 .social-slot {
     background: var(--white);
     border-radius: 15px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08); /* Softer, premium shadow */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    /* Softer, premium shadow */
     overflow: hidden;
     border: 1px solid #eaeaea;
-    width: 100%; /* Forces the slot to stretch all the way across the container */
+    width: 100%;
+    /* Forces the slot to stretch all the way across the container */
 }
 
 .social-header {
@@ -778,15 +862,17 @@ html {
 .social-header h3 {
     margin: 0;
     color: var(--white);
-    font-size: 20px; /* Made the text larger */
+    font-size: 20px;
+    /* Made the text larger */
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
 .hashtag {
-    font-size: 14px; /* Larger hashtag */
-    background: rgba(255,255,255,0.2);
+    font-size: 14px;
+    /* Larger hashtag */
+    background: rgba(255, 255, 255, 0.2);
     padding: 6px 15px;
     border-radius: 20px;
     font-weight: bold;
@@ -795,14 +881,15 @@ html {
 
 .social-feed-container {
     background: #faf1f1;
-    min-height: 400px; /* Made it much taller to hold large posts */
+    min-height: 400px;
+    /* Made it much taller to hold large posts */
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 0;
     /* This ensures any overflow scrolls left-to-right, not up-and-down */
-    overflow-x: auto; 
+    overflow-x: auto;
     overflow-y: hidden;
 }
 
@@ -811,7 +898,8 @@ html {
 .leadership-section {
     position: relative;
     padding: 80px 20px;
-    background: transparent; /* Let the global aura show through */
+    background: transparent;
+    /* Let the global aura show through */
 }
 
 
@@ -832,8 +920,10 @@ html {
 }
 
 .leader-card {
-    background: rgba(255, 255, 255, 0.6); /* Slight transparency */
-    backdrop-filter: blur(5px); /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.6);
+    /* Slight transparency */
+    backdrop-filter: blur(5px);
+    /* Glassmorphism effect */
     border-radius: 15px;
     padding: 20px;
     text-align: center;
@@ -845,19 +935,26 @@ html {
 .leader-img-container {
     width: 180px;
     height: 180px;
-    border-radius: 50%; /* Perfect circle */
-    
+    border-radius: 50%;
+    /* Perfect circle */
+
     /* THE PREMIUM LAYERING */
-    border: 5px solid #ffffff; /* Inner white spacer */
-    outline: 2px solid var(--primary-blue); /* Outer thin elegant ring */
-    outline-offset: -2px; /* Pulls the outline snug against the border */
-    
+    border: 5px solid #ffffff;
+    /* Inner white spacer */
+    outline: 2px solid var(--primary-blue);
+    /* Outer thin elegant ring */
+    outline-offset: -2px;
+    /* Pulls the outline snug against the border */
+
     /* THE FLOATING SHADOW */
-    box-shadow: 0 10px 25px rgba(0, 51, 102, 0.15); /* Soft blue-ish shadow */
-    
+    box-shadow: 0 10px 25px rgba(0, 51, 102, 0.15);
+    /* Soft blue-ish shadow */
+
     overflow: hidden;
-    margin: 0 auto 20px auto; /* Center it */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy premium feel */
+    margin: 0 auto 20px auto;
+    /* Center it */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy premium feel */
     position: relative;
     z-index: 1;
 }
@@ -872,13 +969,17 @@ html {
 
 /* Hover Effect */
 .leader-card:hover .leader-img-container {
-    transform: translateY(-5px) scale(1.02); /* Lifts up and grows slightly */
-    outline-color: var(--primary-red); /* Ring turns red smoothly */
-    box-shadow: 0 15px 35px rgba(220, 53, 69, 0.2); /* Shadow glows red */
+    transform: translateY(-5px) scale(1.02);
+    /* Lifts up and grows slightly */
+    outline-color: var(--primary-red);
+    /* Ring turns red smoothly */
+    box-shadow: 0 15px 35px rgba(220, 53, 69, 0.2);
+    /* Shadow glows red */
 }
 
 .leader-card:hover .leader-img {
-    transform: scale(1.1); /* Smooth zoom inside the circle */
+    transform: scale(1.1);
+    /* Smooth zoom inside the circle */
 }
 
 /* TEXT STYLING */
@@ -911,7 +1012,8 @@ html {
     color: #666;
     line-height: 1.4;
 }
-.arrow-btn{
+
+.arrow-btn {
     display: none;
 }
 
@@ -921,12 +1023,13 @@ html {
 /* --- PREMIUM HORIZONTAL SOCIAL FAB (Left Stream) --- */
 .social-fab-container {
     position: fixed;
-    bottom: 20px; /* Positioned above BackToTop (adjust if needed) */
+    bottom: 20px;
+    /* Positioned above BackToTop (adjust if needed) */
     right: 13px;
     z-index: 1000;
     width: 50px;
     height: 50px;
-    
+
     /* Center content */
     display: flex;
     justify-content: center;
@@ -944,19 +1047,22 @@ html {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     font-size: 22px;
-    position: absolute; /* Stack them all on top of each other */
+    position: absolute;
+    /* Stack them all on top of each other */
     top: 0;
     right: 0;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Springy effect */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Springy effect */
     cursor: pointer;
 }
 
 /* 1. The Main Toggle (+) */
 .fab-toggle {
     background: var(--primary-red);
-    z-index: 20; /* Keep on top */
+    z-index: 20;
+    /* Keep on top */
 }
 
 /* Rotate to X and turn Red */
@@ -970,14 +1076,24 @@ html {
 .fab-social {
     z-index: 10;
     opacity: 0;
-    transform: translateX(0) scale(0.5); /* Start hidden inside the + button */
-    pointer-events: none; /* Not clickable when hidden */
+    transform: translateX(0) scale(0.5);
+    /* Start hidden inside the + button */
+    pointer-events: none;
+    /* Not clickable when hidden */
 }
 
 /* 3. Brand Colors */
-.fab-whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
-.fab-facebook { background: linear-gradient(45deg, #1877F2, #0056b3); }
-.fab-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.fab-whatsapp {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+}
+
+.fab-facebook {
+    background: linear-gradient(45deg, #1877F2, #0056b3);
+}
+
+.fab-instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
 
 /* --- THE HORIZONTAL ANIMATION (Slide Left) --- */
 
@@ -985,7 +1101,7 @@ html {
 .social-fab-container.active .fab-whatsapp {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-65px) scale(1); 
+    transform: translateX(-65px) scale(1);
     transition-delay: 0.05s;
 }
 
@@ -1028,7 +1144,8 @@ html {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 60px; /* Space between CEO and Directors */
+    margin-bottom: 60px;
+    /* Space between CEO and Directors */
     position: relative;
 }
 
@@ -1040,37 +1157,45 @@ html {
     left: 50%;
     width: 2px;
     height: 60px;
-    background: linear-gradient(to bottom, #d4af37, transparent); /* Gold fade */
+    background: linear-gradient(to bottom, #d4af37, transparent);
+    /* Gold fade */
     opacity: 0.4;
 }
 
 /* 2. Make CEO Image Bigger & Premium */
 .ceo-img-ring {
-    width: 200px !important;  /* Significantly larger than Directors (180px) */
+    width: 200px !important;
+    /* Significantly larger than Directors (180px) */
     height: 200px !important;
-    
+
     /* THE GOLD ACCENT */
-    border: 5px solid #ffffff; /* Inner white frame */
-    outline: 3px solid #d4af37; /* Gold Outer Ring */
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25); /* Soft Gold Shadow */
+    border: 5px solid #ffffff;
+    /* Inner white frame */
+    outline: 3px solid #d4af37;
+    /* Gold Outer Ring */
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);
+    /* Soft Gold Shadow */
 }
 
 /* Hover Effect for CEO */
 .ceo-card:hover .ceo-img-ring {
     transform: translateY(-8px) scale(1.02);
-    outline-color: #ffd700; /* Bright Gold on hover */
+    outline-color: #ffd700;
+    /* Bright Gold on hover */
     box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4);
 }
 
 /* 3. Text Styling for CEO */
 .ceo-card h3 {
-    font-size: 1.8rem !important; /* Larger Name */
+    font-size: 1.8rem !important;
+    /* Larger Name */
     color: var(--primary-blue);
     margin-top: 20px;
 }
 
 .ceo-card .leader-title {
-    color: #e91111; /* Gold Title text */
+    color: #e91111;
+    /* Gold Title text */
     font-weight: 700;
     font-size: 1rem;
     text-transform: uppercase;
@@ -1078,97 +1203,114 @@ html {
 }
 
 /* Specific Styles for Verification Card */
-        .verify-box {
-            max-width: 500px;
-            margin: 0 auto;
-            border-top: 5px solid var(--primary-blue);
-        }
-        
-        #result-card {
-            display: none; /* Hidden by default */
-            margin-top: 30px;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            animation: fadeIn 0.5s ease;
-        }
+.verify-box {
+    max-width: 500px;
+    margin: 0 auto;
+    border-top: 5px solid var(--primary-blue);
+}
 
-        .cert-header {
-            background: var(--primary-blue);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
+#result-card {
+    display: none;
+    /* Hidden by default */
+    margin-top: 30px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease;
+}
 
-        .cert-body {
-            padding: 25px;
-            text-align: center;
-            background: #fff;
-        }
+.cert-header {
+    background: var(--primary-blue);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
 
-        .student-photo {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 4px solid #f4f7f6;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            object-fit: cover;
-            margin: 0 auto 15px;
-            display: block;
-        }
+.cert-body {
+    padding: 25px;
+    text-align: center;
+    background: #fff;
+}
 
-        .verified-badge {
-            display: inline-block;
-            background: #e6fffa;
-            color: #00b894;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            border: 1px solid #00b894;
-        }
+.student-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 4px solid #f4f7f6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    margin: 0 auto 15px;
+    display: block;
+}
 
-        .cert-details {
-            text-align: left;
-            margin-top: 20px;
-            background: #f9fbfd;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
+.verified-badge {
+    display: inline-block;
+    background: #e6fffa;
+    color: #00b894;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid #00b894;
+}
 
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .detail-row:last-child { border-bottom: none; }
-        .detail-row strong { color: var(--primary-blue); }
+.cert-details {
+    text-align: left;
+    margin-top: 20px;
+    background: #f9fbfd;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
 
-        .error-msg {
-            background: #fff5f5;
-            color: var(--primary-red);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            display: none;
-            margin-top: 20px;
-            border: 1px solid #feb2b2;
-            font-weight: bold;
-        }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row strong {
+    color: var(--primary-blue);
+}
+
+.error-msg {
+    background: #fff5f5;
+    color: var(--primary-red);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+    margin-top: 20px;
+    border: 1px solid #feb2b2;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 
 @media (max-width: 768px) {
-   /* --- 1. SLEEK MOBILE TOP BAR --- */
-    
+    /* --- 1. SLEEK MOBILE TOP BAR --- */
+
     /* Hide the email and 24/7 text to save screen space */
     .top-bar-contact span:first-child,
     .top-bar-hours {
@@ -1183,7 +1325,7 @@ html {
 
     /* Prevent any stacking */
     .top-bar-contact {
-        flex-direction: row; 
+        flex-direction: row;
     }
 
     /* Make the phone number stand out clearly */
@@ -1197,35 +1339,38 @@ html {
 
     /* Show the hamburger icon */
     .menu-toggle {
-        display: block; 
+        display: block;
     }
 
     /* --- 1. THE SMOOTH SLIDE-DOWN MENU --- */
     nav {
         position: absolute;
-        top: 100%; 
+        top: 100%;
         left: 0;
         width: 100%;
         background-color: var(--white);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         border-top: 2px solid var(--primary-blue);
-        
+
         /* The Ghost Click Fix: */
         opacity: 0;
         visibility: hidden;
-        pointer-events: none; /* <--- ADD THIS! This makes clicks pass through the invisible menu */
-        
-        transform: translateY(-15px); 
-        transition: all 0.3s ease-in-out; 
-        z-index: 1001; /* Ensures it sits above everything else when open */
+        pointer-events: none;
+        /* <--- ADD THIS! This makes clicks pass through the invisible menu */
+
+        transform: translateY(-15px);
+        transition: all 0.3s ease-in-out;
+        z-index: 1001;
+        /* Ensures it sits above everything else when open */
     }
 
     /* The class JavaScript adds when the hamburger is clicked */
     nav.show {
         opacity: 1;
         visibility: visible;
-        pointer-events: auto; /* <--- ADD THIS! This re-enables clicking when the menu is open */
-        transform: translateY(0); 
+        pointer-events: auto;
+        /* <--- ADD THIS! This re-enables clicking when the menu is open */
+        transform: translateY(0);
     }
 
     /* Change the menu to a vertical list */
@@ -1246,35 +1391,43 @@ html {
         display: block;
         padding: 15px 0;
         /* The magic that makes the pop-out smooth */
-        transition: transform 0.2s ease-out, color 0.2s ease, background-color 0.2s ease; 
+        transition: transform 0.2s ease-out, color 0.2s ease, background-color 0.2s ease;
     }
 
     /* The Pop-Out Effect when tapped/hovered */
- nav ul li a.nav-link:hover, /* Added HOVER state */
- nav ul li a.nav-link:active { /* Keeps the click state */
-    transform: scale(1.05); /* Grows the link by 5% */
-    color: var(--primary-red);
-    background-color: #f4f7f6; /* Adds a soft premium background block */
-    border-radius: 8px; /* Smooth corners */
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Optional: Adds depth */
- }
+    nav ul li a.nav-link:hover,
+    /* Added HOVER state */
+    nav ul li a.nav-link:active {
+        /* Keeps the click state */
+        transform: scale(1.05);
+        /* Grows the link by 5% */
+        color: var(--primary-red);
+        background-color: #f4f7f6;
+        /* Adds a soft premium background block */
+        border-radius: 8px;
+        /* Smooth corners */
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        /* Optional: Adds depth */
+    }
 
     /* Remove the sliding red line on mobile */
     nav ul li a.nav-link::after {
-        display: none !important; 
+        display: none !important;
     }
 
     /* --- 2. FIXING THE MOBILE "GET IN TOUCH" BUTTON --- */
     nav ul li a.nav-cta {
         display: block;
-        margin: 15px auto 20px auto; /* Adds space around the button */
-        width: 80%; /* Prevents it from touching the screen edges */
+        margin: 15px auto 20px auto;
+        /* Adds space around the button */
+        width: 80%;
+        /* Prevents it from touching the screen edges */
         padding: 12px 0;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0, 51, 102, 0.2);
     }
-    
+
     /* Remove the bottom border from the last list item so it looks cleaner */
     nav ul li:last-child {
         border-bottom: none;
@@ -1284,24 +1437,26 @@ html {
     .hero-parallax h1 {
         font-size: 2rem;
     }
-    
+
     .inner-hero h1 {
         font-size: 1.8rem;
     }
 
     .service-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
- }
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
     /* --- 3. STICKY SUBMENU (No Hover Glitch) --- */
     .dropdown-menu {
-        display: none; /* Hidden by default */
-    width: 100%;
-    background-color: #f8fbfd;
-    border-left: 4px solid var(--primary-blue);
-    padding: 0;
-    box-sizing: border-box;
+        display: none;
+        /* Hidden by default */
+        width: 100%;
+        background-color: #f8fbfd;
+        border-left: 4px solid var(--primary-blue);
+        padding: 0;
+        box-sizing: border-box;
     }
 
     /* ONLY open when the 'active' class is added by JavaScript */
@@ -1310,17 +1465,18 @@ html {
         opacity: 1 !important;
         visibility: visible !important;
         transform: translateY(0) !important;
-        display: flex !important; /* Forces it to show regardless of desktop rules */
+        display: flex !important;
+        /* Forces it to show regardless of desktop rules */
     }
-    
-    .dropdown.active .arrow-btn {
-    transform: rotate(180deg);
-    color: var(--primary-blue);
-    background-color: #f9f9f9;
- }
 
-   
-     /* --- SEPARATE ARROW BUTTON LOGIC (Final Alignment Fix) --- */
+    .dropdown.active .arrow-btn {
+        transform: rotate(180deg);
+        color: var(--primary-blue);
+        background-color: #f9f9f9;
+    }
+
+
+    /* --- SEPARATE ARROW BUTTON LOGIC (Final Alignment Fix) --- */
 
     .menu-row {
         display: flex;
@@ -1330,19 +1486,20 @@ html {
     }
 
     .menu-row .nav-link {
-        flex: 1; /* Takes up all available space */
+        flex: 1;
+        /* Takes up all available space */
         border-bottom: none !important;
         padding: 15px 0 !important;
-        
+
         /* THE CENTERING FIX */
         justify-content: center;
         display: block;
-        
+
         /* The arrow button is 50px wide. 
            To make the text stay in the center of the SCREEN, 
            we add 50px of margin to the left to balance it.
         */
-        margin-left: 50px; 
+        margin-left: 50px;
     }
 
     .arrow-btn {
@@ -1366,48 +1523,54 @@ html {
     }
 
     /* 5. Hide Old Arrow */
-    .dropdown > .nav-link::after {
+    .dropdown>.nav-link::after {
         display: none !important;
     }
 
     /* Protect the Get in Touch button's shape */
     nav ul li a.nav-cta:hover,
     nav ul li a.nav-cta:active {
-        transform: scale(1.05) translateY(-2px); /* Pops out and lifts up slightly */
+        transform: scale(1.05) translateY(-2px);
+        /* Pops out and lifts up slightly */
         background-color: var(--primary-red);
         color: var(--white) !important;
     }
 
- /* --- MOBILE LEADERSHIP TWEAKS --- */
-  .leadership-section {
+    /* --- MOBILE LEADERSHIP TWEAKS --- */
+    .leadership-section {
         padding: 40px 15px;
     }
 
     .leaders-grid {
-        gap: 20px; /* Closer together on phone */
+        gap: 20px;
+        /* Closer together on phone */
         align-items: center;
-        flex-direction: column; /* Stack them vertically */
+        flex-direction: column;
+        /* Stack them vertically */
     }
 
     .leader-card {
-        width: 100%; 
-        max-width: 300px; /* Prevents them from getting too wide */
+        width: 100%;
+        max-width: 300px;
+        /* Prevents them from getting too wide */
         margin-bottom: 20px;
     }
 
     .leader-img-container {
-        width: 140px; /* Slightly smaller is more elegant on mobile */
+        width: 140px;
+        /* Slightly smaller is more elegant on mobile */
         height: 140px;
-        margin: 0 auto 15px auto; /* Center it */
-        
+        margin: 0 auto 15px auto;
+        /* Center it */
+
         /* 1. The Inner White Frame */
-        border: 4px solid #ffffff; 
-        
+        border: 4px solid #ffffff;
+
         /* 2. The Magic: Outer Ring + Floating Shadow combined */
-        box-shadow: 
-            0 0 0 2px var(--primary-blue), 
-            0 8px 20px rgba(0, 0, 0, 0.15); 
-            
+        box-shadow:
+            0 0 0 2px var(--primary-blue),
+            0 8px 20px rgba(0, 0, 0, 0.15);
+
         border-radius: 50%;
     }
 
@@ -1423,13 +1586,13 @@ html {
         margin: 8px auto;
     }
 
-   
+
 
 
     /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
-   .social-fab-container {
+    .social-fab-container {
         right: 20px !important;
-        bottom: 20px; 
+        bottom: 20px;
     }
 
     .fab-btn {
@@ -1438,18 +1601,28 @@ html {
         font-size: 20px;
     }
 
-   /* Tighten the spread so they don't hit the left edge of the phone */
-    .social-fab-container.active .fab-whatsapp { transform: translateX(-60px) scale(1); }
-    .social-fab-container.active .fab-facebook { transform: translateX(-115px) scale(1); }
-    .social-fab-container.active .fab-instagram { transform: translateX(-170px) scale(1); }
+    /* Tighten the spread so they don't hit the left edge of the phone */
+    .social-fab-container.active .fab-whatsapp {
+        transform: translateX(-60px) scale(1);
+    }
+
+    .social-fab-container.active .fab-facebook {
+        transform: translateX(-115px) scale(1);
+    }
+
+    .social-fab-container.active .fab-instagram {
+        transform: translateX(-170px) scale(1);
+    }
 
     /* Mobile Hover Fix (Updates positions for smaller screens) */
     .social-fab-container.active .fab-whatsapp:hover {
         transform: translateX(-55px) translateY(-3px) scale(1.1);
     }
+
     .social-fab-container.active .fab-facebook:hover {
         transform: translateX(-105px) translateY(-3px) scale(1.1);
     }
+
     .social-fab-container.active .fab-instagram:hover {
         transform: translateX(-155px) translateY(-3px) scale(1.1);
     }
@@ -1466,23 +1639,27 @@ html {
     /* --- CEO PROMINENCE STYLES --- */
 
     .ceo-img-ring {
-        width: 170px !important; /* Slightly smaller on phone, but still distinct */
+        width: 170px !important;
+        /* Slightly smaller on phone, but still distinct */
         height: 170px !important;
     }
 
     .ceo-card h3 {
         font-size: 1.5rem !important;
     }
-    
+
     .ceo-row {
         margin-bottom: 40px;
     }
-    
+
     .ceo-row::after {
-        display: none; /* Hide connector line on small screens */
+        display: none;
+        /* Hide connector line on small screens */
     }
+
     /* 3. Ensure the HTML/Body doesn't allow side-scrolling */
-    html, body {
+    html,
+    body {
         overflow-x: hidden;
         width: 100%;
         position: relative;
@@ -1492,22 +1669,28 @@ html {
     .social-grid {
         display: flex;
         flex-direction: column;
-        gap: 30px; /* Elegant spacing between cards */
-        padding: 0 15px; /* Prevent touching screen edges */
+        gap: 30px;
+        /* Elegant spacing between cards */
+        padding: 0 15px;
+        /* Prevent touching screen edges */
         margin-top: 20px;
     }
 
     /* 2. The Card Container: Floating & Modern */
     .social-slot {
         background: #ffffff;
-        border-radius: 20px; /* Smooth iOS-style corners */
-        box-shadow: 0 10px 40px rgba(0,0,0,0.08); /* Deep, soft shadow */
-        overflow: hidden; /* Clips content perfectly */
-        border: 1px solid rgba(0,0,0,0.05); /* Very subtle border definition */
+        border-radius: 20px;
+        /* Smooth iOS-style corners */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        /* Deep, soft shadow */
+        overflow: hidden;
+        /* Clips content perfectly */
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        /* Very subtle border definition */
     }
 
     /* 3. PREMIUM HEADERS: Real Brand Colors */
-    
+
     /* Facebook: Official Gradient Blue */
     .social-slot:nth-of-type(1) .social-header {
         background: linear-gradient(135deg, #1877F2 0%, #004db3 100%);
@@ -1527,7 +1710,8 @@ html {
         font-weight: 700;
         margin: 0;
         letter-spacing: 0.5px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle text drop shadow */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Subtle text drop shadow */
     }
 
     /* Glassmorphism Hashtag Pill */
@@ -1543,27 +1727,17 @@ html {
 
     /* 4. THE FIX: Seamless Feed Container */
     .social-feed-container {
-        /* CRITICAL: Changed from pink to white to blend with the card */
-        background-color: #ffffff !important; 
-        
-        /* Remove padding so the feed touches the edges */
-        padding: 10px 0 !important; 
-        
+        background: #ffffff;
+        padding: 0 !important;
+        /* CRITICAL: Allows feed to touch edges */
         min-height: 450px;
-    }
-
-    /* 5. MAGIC FIX FOR CURATOR WIDGET (Overrides the plugin) */
-    /* This forces the widget to use the full width of your new card */
-    .crt-feed-window {
-        width: 100% !important;
-        margin: 0 !important;
-        background: transparent !important;
+        border-radius: 0 0 20px 20px;
+        /* Rounds bottom corners of the card only */
+        overflow: hidden;
     }
 
 
- 
+
+
+
 }
-    
-   
-
-
