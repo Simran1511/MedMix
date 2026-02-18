@@ -770,9 +770,9 @@ html {
     /* We use fixed positioning, so we don't need display:none here if we use opacity */
 
     position: fixed;
-    bottom: 80px;
-    right: 15px;
-    /* Moved slightly left so it's not sticking to the edge */
+   /* FIX: Stack above FAB + Safe Area */
+    bottom: calc(80px + env(safe-area-inset-bottom)); 
+    right: calc(15px + env(safe-area-inset-right));
     z-index: 1000;
 
     /* Shape & Color */
@@ -1024,14 +1024,16 @@ html {
 /* --- PREMIUM HORIZONTAL SOCIAL FAB (Left Stream) --- */
 .social-fab-container {
     position: fixed;
-    bottom: 20px;
-    /* Positioned above BackToTop (adjust if needed) */
-    right: 13px;
+    /* FIX: Respect the "Home Bar" at the bottom */
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    /* FIX: Respect the "Notch" on the right in landscape */
+    right: calc(13px + env(safe-area-inset-right));
+    
     z-index: 1000;
     width: 50px;
     height: 50px;
-
-    /* Center content */
+    
+    /* ... keep the rest of your flex/display code same ... */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1576,7 +1578,7 @@ html {
     }
 
     .leader-info h3 {
-        font-size: 1.2rem;
+        font-size: 1.2rem ;
     }
 
     .leader-title {
@@ -1592,8 +1594,9 @@ html {
 
     /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
     .social-fab-container {
-        right: 20px !important;
-        bottom: 20px;
+        /* FIX: Ensure mobile landscape doesn't hide button under the notch */
+        right: calc(20px + env(safe-area-inset-right))  !important;
+        bottom: calc(20px + env(safe-area-inset-bottom))  !important;
     }
 
     .fab-btn {
@@ -1632,8 +1635,8 @@ html {
     #backToTop {
         width: 50px !important;
         height: 50px !important;
-        right: 20px !important;
-        bottom: 85px;
+        right: calc(20px + env(safe-area-inset-right)) !important;
+        bottom: calc(85px + env(safe-area-inset-bottom)) !important;
         font-size: 18px;
     }
 
