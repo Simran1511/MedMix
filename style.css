@@ -1250,15 +1250,15 @@ html {
     }
 
     /* The Pop-Out Effect when tapped/hovered */
-nav ul li a.nav-link:hover, /* Added HOVER state */
-nav ul li a.nav-link:active { /* Keeps the click state */
+ nav ul li a.nav-link:hover, /* Added HOVER state */
+ nav ul li a.nav-link:active { /* Keeps the click state */
     transform: scale(1.05); /* Grows the link by 5% */
     color: var(--primary-red);
     background-color: #f4f7f6; /* Adds a soft premium background block */
     border-radius: 8px; /* Smooth corners */
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Optional: Adds depth */
-}
+ }
 
     /* Remove the sliding red line on mobile */
     nav ul li a.nav-link::after {
@@ -1293,7 +1293,7 @@ nav ul li a.nav-link:active { /* Keeps the click state */
     width: 100%;
     height: 300px;
     object-fit: cover;
-}
+ }
     /* --- 3. STICKY SUBMENU (No Hover Glitch) --- */
     .dropdown-menu {
         display: none; /* Hidden by default */
@@ -1317,7 +1317,7 @@ nav ul li a.nav-link:active { /* Keeps the click state */
     transform: rotate(180deg);
     color: var(--primary-blue);
     background-color: #f9f9f9;
-}
+ }
 
    
      /* --- SEPARATE ARROW BUTTON LOGIC (Final Alignment Fix) --- */
@@ -1378,7 +1378,7 @@ nav ul li a.nav-link:active { /* Keeps the click state */
         color: var(--white) !important;
     }
 
-/* --- MOBILE LEADERSHIP TWEAKS --- */
+ /* --- MOBILE LEADERSHIP TWEAKS --- */
   .leadership-section {
         padding: 40px 15px;
     }
@@ -1487,8 +1487,69 @@ nav ul li a.nav-link:active { /* Keeps the click state */
         width: 100%;
         position: relative;
     }
-}
 
+
+ /* --- Mobile Optimization for Social Feeds --- */
+
+ /* 1. Reset the grid to stack vertically on screens smaller than 768px */
+
+    
+    .social-grid {
+        display: flex !important; /* Overrides existing grid/flex row behavior */
+        flex-direction: column;
+        gap: 30px; /* Adds space between Facebook and Instagram sections */
+        padding: 0 10px; /* Prevents content from touching screen edges */
+    }
+
+    /* 2. Style the individual slots to look like clean cards */
+    .social-slot {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 15px; /* Smooth rounded corners */
+        box-shadow: 0 4px 15px rgba(161, 37, 37, 0.08); /* Subtle shadow for depth */
+        overflow: hidden; /* Ensures content stays inside rounded corners */
+        margin-bottom: 20px;
+    }
+
+    /* 3. Polish the Header (Icon + Title) */
+    .social-header {
+       background-color: var(--primary-blue); /* Light gray background for contrast */
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    .social-header h3 {
+        font-size: 1.2rem;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* 4. Ensure the Feed Container takes full width */
+    .social-feed-container {
+        width: 100%;
+        min-height: 400px; /* Prevents layout jump before feed loads */
+        background: #fff;
+        padding: 10px; /* Inner spacing for the feed content */
+    }
+
+
+ /* 5. Specific Fix for Curator.io Widgets on Mobile */
+ /* This forces the widget to respect the container width */
+
+    .crt-feed-window {
+        width: 100% !important;
+    }
+    /* Hide the 'Powered by Curator' text if it overlaps badly on small screens (Optional) */
+    .crt-logo {
+        font-size: 10px !important;
+    }
+
+}
     
    
 
