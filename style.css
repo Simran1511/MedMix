@@ -1024,16 +1024,14 @@ html {
 /* --- PREMIUM HORIZONTAL SOCIAL FAB (Left Stream) --- */
 .social-fab-container {
     position: fixed;
-    /* FIX: Respect the "Home Bar" at the bottom */
-    bottom: calc(20px + env(safe-area-inset-bottom));
-    /* FIX: Respect the "Notch" on the right in landscape */
-    right: calc(13px + env(safe-area-inset-right));
-    
+    bottom: 20px;
+    /* Positioned above BackToTop (adjust if needed) */
+    right: 13px;
     z-index: 1000;
     width: 50px;
     height: 50px;
-    
-    /* ... keep the rest of your flex/display code same ... */
+
+    /* Center content */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1594,9 +1592,8 @@ html {
 
     /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
     .social-fab-container {
-        /* FIX: Ensure mobile landscape doesn't hide button under the notch */
-        right: calc(20px + env(safe-area-inset-right)) !important;
-        bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+        right: 20px !important;
+        bottom: 20px;
     }
 
     .fab-btn {
@@ -1633,13 +1630,11 @@ html {
 
     /* Optional: Resize Back to Top to match */
     #backToTop {
-       width: 50px !important;
+        width: 50px !important;
         height: 50px !important;
-        /* FIX: Stack it properly above the FAB in landscape */
-        right: calc(20px + env(safe-area-inset-right)) !important;
-        bottom: calc(85px + env(safe-area-inset-bottom)) !important;
+        right: 20px !important;
+        bottom: 85px;
         font-size: 18px;
-    border-radius: 50%;
     }
 
     /* --- CEO PROMINENCE STYLES --- */
