@@ -44,17 +44,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // --- 3. BACK TO TOP BUTTON ---
-    const backToTopButton = document.getElementById("backToTop");
-    if (backToTopButton) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) backToTopButton.classList.add('show');
-            else backToTopButton.classList.remove('show');
-        });
+    const backToTopBtn = document.getElementById("backToTop");
+const progressCircle = document.querySelector(".progress-ring-circle");
 
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+// 1. Calculate the circle's geometry
+const radius = progressCircle.r.baseVal.value;
+const circumference = radius * 2 * Math.PI;
+
+// 2. Set the initial SVG stroke properties
+progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+progressCircle.style.strokeDashoffset = circumference;
+
+// 3. Listen for scrolling
+window.addEventListener("scroll", () => {
+    // Toggle button visibility
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+    } else {
+        backToTopBtn.classList.remove("show");
     }
+
+    // Calculate how far the user has scrolled
+    const scrollTop = window.scrollY;
+    // Calculate the total scrollable height of the page
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    // Find the percentage scrolled (e.g., 0.5 for 50%)
+    const scrollPercent = scrollTop / docHeight;
+    
+    // Offset the stroke by the reverse percentage
+    const offset = circumference - (scrollPercent * circumference);
+    progressCircle.style.strokeDashoffset = offset;
+});
+
+// 4. Smooth scroll back to top when clicked
+backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 
 
     // --- 5. SOCIAL FAB TOGGLE ---

@@ -765,58 +765,71 @@ html {
     scroll-behavior: smooth;
 }
 
+/* 1. The Button Container */
 #backToTop {
-    /* 1. REMOVED conflicting 'display' rules. */
-    /* We use fixed positioning, so we don't need display:none here if we use opacity */
-
     position: fixed;
-   /* FIX: Stack above FAB + Safe Area */
-    bottom: 80px !important; 
-    right: 15px !important;
-    z-index: 1000;
+    bottom: 80px; 
+    right: 15px;
+    z-index: 999;
 
-    /* Shape & Color */
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    /* 50% makes a perfect circle (40% is slightly square) */
-    background-color: var(--text-dark);
-    color: white;
+    
+    /* Changed to white so the red progress ring shows clearly */
+    background-color: var(--white); 
+    color: var(--text-dark); /* Dark grey arrow */
+    
     border: none;
     outline: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Softer, premium shadow */
 
-    /* Centering the Arrow */
     display: flex;
-    /* Keeps the arrow centered */
     justify-content: center;
     align-items: center;
-    font-size: 24px;
     cursor: pointer;
+    padding: 0;
 
-    /* Animation State: Hidden */
+    /* Animation State */
     opacity: 0;
-    /* Invisible */
     visibility: hidden;
-    /* truly hides it from screen readers/clicks */
     transform: translateY(20px);
-    /* Pushes it down slightly */
     transition: all 0.3s ease;
-    /* Smooth fade in/out */
 }
 
-/* 2. The Active State (Added by JavaScript) */
 #backToTop.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    /* Slides up into place */
 }
 
-#backToTop:hover {
-    background-color: var(--primary-red);
+/* Lift on hover, but no background change to protect the ring */
+#backToTop.show:hover {
     transform: translateY(-5px);
-    /* Lifts up on hover */
+    box-shadow: 0 8px 25px rgba(230, 0, 0, 0.2); /* Soft red glow on hover */
+    color: var(--primary-red); /* Turns the arrow red on hover */
+}
+
+/* 2. The SVG Ring */
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Rotates the circle so the stroke starts at 12 o'clock instead of 3 o'clock */
+    transform: rotate(-90deg); 
+}
+
+.progress-ring-circle {
+    stroke: var(--primary-red);
+    /* These values will be controlled by JavaScript, but we add a smooth transition */
+    transition: stroke-dashoffset 0.1s linear; 
+}
+
+/* 3. The Arrow Icon */
+.arrow-icon {
+    position: relative;
+    z-index: 2; /* Keeps the arrow above the ring */
+    transition: color 0.3s ease;
 }
 
 /* --- RESPONSIVE DESIGN (Tablets & Smartphones) --- */
@@ -920,18 +933,6 @@ html {
     margin-top: 40px;
 }
 
-.leader-card {
-    background: rgba(255, 255, 255, 0.6);
-    /* Slight transparency */
-    backdrop-filter: blur(5px);
-    /* Glassmorphism effect */
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    width: 300px;
-    transition: transform 0.3s ease;
-}
-
 /* CIRCULAR IMAGE STYLING */
 .leader-img-container {
     width: 180px;
@@ -959,6 +960,20 @@ html {
     position: relative;
     z-index: 1;
 }
+
+.leader-card {
+    background: rgba(255, 255, 255, 0.6);
+    /* Slight transparency */
+    backdrop-filter: blur(5px);
+    /* Glassmorphism effect */
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+ 
 
 .leader-img {
     width: 100%;
@@ -1028,11 +1043,11 @@ html {
     bottom: 20px !important;
     /* FIX: Respect the "Notch" on the right in landscape */
     right: 13px !important;
-    
+
     z-index: 1000;
     width: 50px;
     height: 50px;
-    
+
     /* ... keep the rest of your flex/display code same ... */
     display: flex;
     justify-content: center;
@@ -1578,7 +1593,7 @@ html {
     }
 
     .leader-info h3 {
-        font-size: 1.2rem ;
+        font-size: 1.2rem;
     }
 
     .leader-title {
@@ -1682,7 +1697,7 @@ html {
 
     /* 2. The Card Container: Floating & Modern */
     .social-slot {
-        
+
         background: #ffffff;
         border-radius: 20px;
         /* Smooth iOS-style corners */
@@ -1739,7 +1754,7 @@ html {
         border-radius: 0 0 20px 20px;
         /* Rounds bottom corners of the card only */
         overflow: hidden;
-        
+
     }
 
 
