@@ -1325,7 +1325,7 @@ html {
 }
 
 
-
+/*MOBILE VIEW*/
 @media (max-width: 768px) {
     /* --- 1. SLEEK MOBILE TOP BAR --- */
 
@@ -1353,14 +1353,12 @@ html {
         letter-spacing: 0.5px;
     }
 
-    /* ... (Keep your existing hamburger menu and dropdown CSS below this) ... */
-
     /* Show the hamburger icon */
     .menu-toggle {
         display: block;
     }
 
-    /* --- 1. THE SMOOTH SLIDE-DOWN MENU --- */
+    /* --- 2. THE SMOOTH SLIDE-DOWN MENU --- */
     nav {
         position: absolute;
         top: 100%;
@@ -1373,21 +1371,18 @@ html {
         /* The Ghost Click Fix: */
         opacity: 0;
         visibility: hidden;
-        pointer-events: none;
-        /* <--- ADD THIS! This makes clicks pass through the invisible menu */
+        pointer-events: none; /* Makes clicks pass through the invisible menu */
 
         transform: translateY(-15px);
         transition: all 0.3s ease-in-out;
-        z-index: 1001;
-        /* Ensures it sits above everything else when open */
+        z-index: 1001; /* Ensures it sits above everything else when open */
     }
 
     /* The class JavaScript adds when the hamburger is clicked */
     nav.show {
         opacity: 1;
         visibility: visible;
-        pointer-events: auto;
-        /* <--- ADD THIS! This re-enables clicking when the menu is open */
+        pointer-events: auto; /* Re-enables clicking when the menu is open */
         transform: translateY(0);
     }
 
@@ -1408,25 +1403,18 @@ html {
     nav ul li a {
         display: block;
         padding: 15px 0;
-        /* The magic that makes the pop-out smooth */
         transition: transform 0.2s ease-out, color 0.2s ease, background-color 0.2s ease;
     }
 
     /* The Pop-Out Effect when tapped/hovered */
     nav ul li a.nav-link:hover,
-    /* Added HOVER state */
     nav ul li a.nav-link:active {
-        /* Keeps the click state */
-        transform: scale(1.05);
-        /* Grows the link by 5% */
+        transform: scale(1.05); /* Grows the link by 5% */
         color: var(--primary-red);
         background-color: #f4f7f6;
-        /* Adds a soft premium background block */
         border-radius: 8px;
-        /* Smooth corners */
         font-weight: bold;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        /* Optional: Adds depth */
     }
 
     /* Remove the sliding red line on mobile */
@@ -1434,21 +1422,26 @@ html {
         display: none !important;
     }
 
-    /* --- 2. FIXING THE MOBILE "GET IN TOUCH" BUTTON --- */
+    /* --- 3. FIXING THE MOBILE "GET IN TOUCH" BUTTON --- */
     nav ul li a.nav-cta {
         display: block;
         margin: 15px auto 20px auto;
-        /* Adds space around the button */
         width: 80%;
-        /* Prevents it from touching the screen edges */
         padding: 12px 0;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0, 51, 102, 0.2);
     }
 
-    /* Remove the bottom border from the last list item so it looks cleaner */
     nav ul li:last-child {
         border-bottom: none;
+    }
+
+    /* Protect the Get in Touch button's shape */
+    nav ul li a.nav-cta:hover,
+    nav ul li a.nav-cta:active {
+        transform: scale(1.05) translateY(-2px);
+        background-color: var(--primary-red);
+        color: var(--white) !important;
     }
 
     /* Shrink the huge banner text for small phone screens */
@@ -1466,10 +1459,9 @@ html {
         object-fit: cover;
     }
 
-    /* --- 3. STICKY SUBMENU (No Hover Glitch) --- */
+    /* --- 4. STICKY SUBMENU & ARROW BUTTON LOGIC --- */
     .dropdown-menu {
         display: none;
-        /* Hidden by default */
         width: 100%;
         background-color: #f8fbfd;
         border-left: 4px solid var(--primary-blue);
@@ -1478,24 +1470,14 @@ html {
     }
 
     /* ONLY open when the 'active' class is added by JavaScript */
-    /* We REMOVED the :hover rule here to prevent the "Shrink" glitch */
     .dropdown.active .dropdown-menu {
         opacity: 1 !important;
         visibility: visible !important;
         transform: translateY(0) !important;
         display: flex !important;
-        /* Forces it to show regardless of desktop rules */
     }
 
-    .dropdown.active .arrow-btn {
-        transform: rotate(180deg);
-        color: var(--primary-blue);
-        background-color: #f9f9f9;
-    }
-
-
-    /* --- SEPARATE ARROW BUTTON LOGIC (Final Alignment Fix) --- */
-
+    /* Final Alignment Fix for the Arrow Menu Row */
     .menu-row {
         display: flex;
         width: 100%;
@@ -1505,18 +1487,15 @@ html {
 
     .menu-row .nav-link {
         flex: 1;
-        /* Takes up all available space */
         border-bottom: none !important;
         padding: 15px 0 !important;
 
-        /* THE CENTERING FIX */
+        /* THE CENTERING FIX (Changed from block to flex) */
+        display: flex; 
         justify-content: center;
-        display: block;
+        align-items: center;
 
-        /* The arrow button is 50px wide. 
-           To make the text stay in the center of the SCREEN, 
-           we add 50px of margin to the left to balance it.
-        */
+        /* Balances the 50px arrow-btn on the right */
         margin-left: 50px;
     }
 
@@ -1533,62 +1512,43 @@ html {
         transition: transform 0.3s ease;
     }
 
-    /* 4. Rotate Arrow when Open */
+    /* Rotate Arrow when Open */
     .dropdown.active .arrow-btn {
         transform: rotate(180deg);
         color: var(--primary-blue);
         background-color: #f9f9f9;
     }
 
-    /* 5. Hide Old Arrow */
+    /* Hide Old Arrow */
     .dropdown>.nav-link::after {
         display: none !important;
     }
 
-    /* Protect the Get in Touch button's shape */
-    nav ul li a.nav-cta:hover,
-    nav ul li a.nav-cta:active {
-        transform: scale(1.05) translateY(-2px);
-        /* Pops out and lifts up slightly */
-        background-color: var(--primary-red);
-        color: var(--white) !important;
-    }
-
-    /* --- MOBILE LEADERSHIP TWEAKS --- */
+    /* --- 5. MOBILE LEADERSHIP TWEAKS --- */
     .leadership-section {
         padding: 40px 15px;
     }
 
     .leaders-grid {
         gap: 20px;
-        /* Closer together on phone */
         align-items: center;
         flex-direction: column;
-        /* Stack them vertically */
     }
 
     .leader-card {
         width: 100%;
         max-width: 300px;
-        /* Prevents them from getting too wide */
         margin-bottom: 20px;
     }
 
     .leader-img-container {
         width: 140px;
-        /* Slightly smaller is more elegant on mobile */
         height: 140px;
         margin: 0 auto 15px auto;
-        /* Center it */
-
-        /* 1. The Inner White Frame */
         border: 4px solid #ffffff;
-
-        /* 2. The Magic: Outer Ring + Floating Shadow combined */
         box-shadow:
             0 0 0 2px var(--primary-blue),
             0 8px 20px rgba(0, 0, 0, 0.15);
-
         border-radius: 50%;
     }
 
@@ -1604,12 +1564,26 @@ html {
         margin: 8px auto;
     }
 
+    /* --- 6. CEO PROMINENCE STYLES --- */
+    .ceo-img-ring {
+        width: 170px !important;
+        height: 170px !important;
+    }
 
+    .ceo-card h3 {
+        font-size: 1.5rem !important;
+    }
 
+    .ceo-row {
+        margin-bottom: 40px;
+    }
 
-    /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
+    .ceo-row::after {
+        display: none; /* Hide connector line on small screens */
+    }
+
+    /* --- 7. THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
     .social-fab-container {
-        /* FIX: Ensure mobile landscape doesn't hide button under the notch */
         right: 20px !important;
         bottom: 20px !important;
     }
@@ -1633,7 +1607,7 @@ html {
         transform: translateX(-170px) scale(1);
     }
 
-    /* Mobile Hover Fix (Updates positions for smaller screens) */
+    /* Mobile Hover Fix */
     .social-fab-container.active .fab-whatsapp:hover {
         transform: translateX(-55px) translateY(-3px) scale(1.1);
     }
@@ -1646,37 +1620,13 @@ html {
         transform: translateX(-155px) translateY(-3px) scale(1.1);
     }
 
-    /* Optional: Resize Back to Top to match */
+    /* THE FIX: Move BackToTop up so it doesn't overlap the FAB */
     #backToTop {
-        width: 50px !important;
-        height: 50px !important;
-        right: 20px !important;
-        bottom: 85px !important;
-        font-size: 18px;
+        bottom: 85px !important; 
+        right: 20px !important;  
     }
 
-    /* --- CEO PROMINENCE STYLES --- */
-
-    .ceo-img-ring {
-        width: 170px !important;
-        /* Slightly smaller on phone, but still distinct */
-        height: 170px !important;
-    }
-
-    .ceo-card h3 {
-        font-size: 1.5rem !important;
-    }
-
-    .ceo-row {
-        margin-bottom: 40px;
-    }
-
-    .ceo-row::after {
-        display: none;
-        /* Hide connector line on small screens */
-    }
-
-    /* 3. Ensure the HTML/Body doesn't allow side-scrolling */
+    /* --- 8. LAYOUT & SOCIAL FEEDS --- */
     html,
     body {
         overflow-x: hidden;
@@ -1684,32 +1634,21 @@ html {
         position: relative;
     }
 
-    /* 1. Clean up the Main Grid */
     .social-grid {
         display: flex;
         flex-direction: column;
         gap: 30px;
-        /* Elegant spacing between cards */
         padding: 0 15px;
-        /* Prevent touching screen edges */
         margin-top: 20px;
     }
 
-    /* 2. The Card Container: Floating & Modern */
     .social-slot {
-
         background: #ffffff;
         border-radius: 20px;
-        /* Smooth iOS-style corners */
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        /* Deep, soft shadow */
         overflow: hidden;
-        /* Clips content perfectly */
         border: 1px solid rgba(0, 0, 0, 0.05);
-        /* Very subtle border definition */
     }
-
-    /* 3. PREMIUM HEADERS: Real Brand Colors */
 
     /* Facebook: Official Gradient Blue */
     .social-slot:nth-of-type(1) .social-header {
@@ -1723,7 +1662,6 @@ html {
         padding: 16px 20px;
     }
 
-    /* Header Typography */
     .social-header h3 {
         color: white;
         font-size: 1.1rem;
@@ -1731,10 +1669,8 @@ html {
         margin: 0;
         letter-spacing: 0.5px;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        /* Subtle text drop shadow */
     }
 
-    /* Glassmorphism Hashtag Pill */
     .hashtag {
         background: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(5px);
@@ -1745,20 +1681,12 @@ html {
         font-size: 0.75rem;
     }
 
-    /* 4. THE FIX: Seamless Feed Container */
+    /* Seamless Feed Container */
     .social-feed-container {
         background: #ffffff;
         padding: 0 !important;
-        /* CRITICAL: Allows feed to touch edges */
         min-height: 450px;
         border-radius: 0 0 20px 20px;
-        /* Rounds bottom corners of the card only */
         overflow: hidden;
-
     }
-
-
-
-
-
 }
