@@ -771,8 +771,8 @@ html {
 
     position: fixed;
    /* FIX: Stack above FAB + Safe Area */
-    bottom: calc(80px + env(safe-area-inset-bottom)); 
-    right: calc(15px + env(safe-area-inset-right));
+    bottom: 80px !important; 
+    right: 15px !important;
     z-index: 1000;
 
     /* Shape & Color */
@@ -1025,9 +1025,9 @@ html {
 .social-fab-container {
     position: fixed;
     /* FIX: Respect the "Home Bar" at the bottom */
-    bottom: calc(20px + env(safe-area-inset-bottom));
+    bottom: 20px !important;
     /* FIX: Respect the "Notch" on the right in landscape */
-    right: calc(13px + env(safe-area-inset-right));
+    right: 13px !important;
     
     z-index: 1000;
     width: 50px;
