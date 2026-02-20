@@ -1595,8 +1595,8 @@ html {
     /* --- THE HORIZONTAL ANIMATION (Left Stream with Fix) --- */
     .social-fab-container {
         /* FIX: Ensure mobile landscape doesn't hide button under the notch */
-        right: calc(20px + env(safe-area-inset-right))  !important;
-        bottom: calc(20px + env(safe-area-inset-bottom))  !important;
+        right: 20px !important;
+        bottom: 20px !important;
     }
 
     .fab-btn {
@@ -1635,8 +1635,8 @@ html {
     #backToTop {
         width: 50px !important;
         height: 50px !important;
-        right: calc(20px + env(safe-area-inset-right)) !important;
-        bottom: calc(85px + env(safe-area-inset-bottom)) !important;
+        right: 20px !important;
+        bottom: 85px !important;
         font-size: 18px;
     }
 
